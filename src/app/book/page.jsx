@@ -9,9 +9,6 @@ export const metadata = {
 };
 
 function Booking() {
-  const [creditCardInput, setCreditCardInput] = useState(false);
-
-
   return (
     <div>
       <h1>This is the booking page</h1>
@@ -47,9 +44,13 @@ function Booking() {
           <Input type="email" id="payer-email" name="email" labelText="Email of payer" />
           <Input type="phone" inputmode="numeric" id="payer-phone" name="email" labelText="Phone of payer" />
           <FormGroup headline="Payment information">
+            {/* //TODO fix restrictions on input fields corresponding to requirements for cc, cvc and exp date */}
             <Input type="text" id="cc-number" name="cc-number" inputmode="numeric" autocomplete="cc-number" maxlength="19" placeholder="1234 5678 1234 5678" labelText="Credit/Debit card number" />
+            <Input type="text" id="expiration-date" name="expiration-date" inputmode="numeric" autocomplete="cc-exp" maxlength="7" placeholder="MM/YYYY" labelText="Expiration Date" />
+            <Input type="text" id="cvc-number" name="cvc-number" inputmode="numeric" autocomplete="cc-csc" maxlength="3" placeholder="123" labelText="CVC number" />
           </FormGroup>
         </FormGroup>
+        <button>SUBMIT FORM</button>
       </SubmitForm>
     </div>
   );
