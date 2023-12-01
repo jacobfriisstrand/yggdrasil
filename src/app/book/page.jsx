@@ -46,9 +46,9 @@ function Booking() {
           <Input placeholder="Phone" type="phone" required inputmode="numeric" id="payer-phone" name="email" labelText="Phone of payer" />
           <FormGroup headline="Payment information">
             {/* //TODO fix restrictions on input fields corresponding to requirements for cc, cvc and exp date */}
-            <Input type="text" required id="cc-number" name="cc-number" inputmode="numeric" autocomplete="cc-number" maxlength="19" placeholder="1234 5678 1234 5678" labelText="Credit/Debit card number" />
-            <Input type="text" required id="expiration-date" name="expiration-date" inputmode="numeric" autocomplete="cc-exp" maxlength="7" placeholder="MM/YYYY" labelText="Expiration Date" />
-            <Input type="text" required id="cvc-number" name="cvc-number" inputmode="numeric" autocomplete="cc-csc" maxlength="3" placeholder="123" labelText="CVC number" />
+            <Input placeholder="Credit / Debit card number" type="text" required id="cc-number" name="cc-number" inputmode="numeric" autocomplete="cc-number" maxlength="19" labelText="Credit/Debit card number" />
+            <Input placeholder="MM/YYYY" type="text" required id="expiration-date" name="expiration-date" inputmode="numeric" autocomplete="cc-exp" maxlength="7" labelText="Expiration Date" />
+            <Input placeholder="123" type="text" required id="cvc-number" name="cvc-number" inputmode="numeric" autocomplete="cc-csc" maxlength="3" labelText="CVC number" />
           </FormGroup>
         </FormGroup>
         <button>SUBMIT FORM</button>
