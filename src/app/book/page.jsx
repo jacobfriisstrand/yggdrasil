@@ -15,15 +15,16 @@ function Booking() {
       <SubmitForm>
         <FormGroup headline="Select ticket amount and type">
           {/* //TODO change to +/- buttons */}
-          <Input type="number" id="ticket-amount" labelText="Select amount of regular tickets" />
-          <Input type="number" id="ticket-amount" labelText="Select amount of VIP tickets" />
+          <Input type="number" required id="ticket-amount" labelText="Select amount of regular tickets" />
+          <Input type="number" required id="ticket-amount" labelText="Select amount of VIP tickets" />
         </FormGroup>
         <FormGroup headline="Available areas">
-          <Input type="radio" name="svartheim" id="svartheim" labelText="Svartheim" />
-          <Input type="radio" name="nilfheim" id="nilfheim" labelText="Nilfheim" />
-          <Input type="radio" name="helheim" id="helheim" labelText="Helheim" />
-          <Input type="radio" name="muspelheim" id="muspelheim" labelText="Muspelheim" />
-          <Input type="radio" name="alfheim" id="alfheim" labelText="Alfheim" />
+          {/* //TODO Map out by areas */}
+          <Input type="radio" name="svartheim" id="svartheim" labelText="Svartheim" placeholder="Svartheim" />
+          <Input type="radio" name="nilfheim" id="nilfheim" labelText="Nilfheim" placeholder="Nilfheim" />
+          <Input type="radio" name="helheim" id="helheim" labelText="Helheim" placeholder="Helheim" />
+          <Input type="radio" name="muspelheim" id="muspelheim" labelText="Muspelheim" placeholder="Muspelheim" />
+          <Input type="radio" name="alfheim" id="alfheim" labelText="Alfheim" placeholder="Alfheim" />
         </FormGroup>
         <FormGroup headline="Extras">
           <Input type="checkbox" id="green-camping" labelText="Choose green camping" />
@@ -39,15 +40,15 @@ function Booking() {
           <AttendeeInput />
         </FormGroup>
         <FormGroup headline="Payer information">
-          <Input type="text" id="payer-firstname" name="name" labelText="First name of payer" />
-          <Input type="text" id="payer-surname" name="name" labelText="Last name of payer" />
-          <Input type="email" id="payer-email" name="email" labelText="Email of payer" />
-          <Input type="phone" inputmode="numeric" id="payer-phone" name="email" labelText="Phone of payer" />
+          <Input placeholder="First name" type="text" required id="payer-firstname" name="name" labelText="First name of payer" />
+          <Input placeholder="Last name" type="text" required id="payer-surname" name="name" labelText="Last name of payer" />
+          <Input placeholder="Email" type="email" required id="payer-email" name="email" labelText="Email of payer" />
+          <Input placeholder="Phone" type="phone" required inputmode="numeric" id="payer-phone" name="email" labelText="Phone of payer" />
           <FormGroup headline="Payment information">
             {/* //TODO fix restrictions on input fields corresponding to requirements for cc, cvc and exp date */}
-            <Input type="text" id="cc-number" name="cc-number" inputmode="numeric" autocomplete="cc-number" maxlength="19" placeholder="1234 5678 1234 5678" labelText="Credit/Debit card number" />
-            <Input type="text" id="expiration-date" name="expiration-date" inputmode="numeric" autocomplete="cc-exp" maxlength="7" placeholder="MM/YYYY" labelText="Expiration Date" />
-            <Input type="text" id="cvc-number" name="cvc-number" inputmode="numeric" autocomplete="cc-csc" maxlength="3" placeholder="123" labelText="CVC number" />
+            <Input type="text" required id="cc-number" name="cc-number" inputmode="numeric" autocomplete="cc-number" maxlength="19" placeholder="1234 5678 1234 5678" labelText="Credit/Debit card number" />
+            <Input type="text" required id="expiration-date" name="expiration-date" inputmode="numeric" autocomplete="cc-exp" maxlength="7" placeholder="MM/YYYY" labelText="Expiration Date" />
+            <Input type="text" required id="cvc-number" name="cvc-number" inputmode="numeric" autocomplete="cc-csc" maxlength="3" placeholder="123" labelText="CVC number" />
           </FormGroup>
         </FormGroup>
         <button>SUBMIT FORM</button>

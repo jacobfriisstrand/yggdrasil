@@ -1,0 +1,38 @@
+/* .visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+} */
+
+.input {
+  &[type="checkbox"] {
+    background-color: lime;
+    appearance: none;
+    border-width: 4px;
+    border: 1px solid #1a365d;
+    padding: 0.5rem;
+  }
+
+  &[type="email"] {
+    background-color: red;
+  }
+
+  &[type="text"] {
+    background-color: green;
+  }
+
+  &[type="phone"] {
+    background-color: blue;
+  }
+}
+
+.inputContainer {
+  display: grid;
+  width: fit-content;
+}

@@ -1,11 +1,14 @@
+import styles from "./styles/Input.module.css";
+
 function Input({ type, name, placeholder, id, labelText, ...whatever }) {
   return (
     <div>
-      <label htmlFor={id} {...whatever}>
+      <label className={styles.visuallyHidden} htmlFor={id} {...whatever}>
         {labelText}
       </label>
-      <input type={type} name={name} id={id} placeholder={placeholder} {...whatever} />
-      <p></p>
+      <div className={styles.inputContainer}>
+        <input className={`${styles.input} ${styles.inputChild}`} placeholder={placeholder} type={type} name={name} id={id} {...whatever} />
+      </div>
     </div>
   );
 }
