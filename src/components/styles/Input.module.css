@@ -21,21 +21,13 @@
   pointer-events: none;
 }
 
-.shiftPlaceholder {
-  animation: shiftPlaceholder 100ms;
+.inputContainer:has(input[type="radio"]) {
+  background-color: red;
+  display: contents;
 }
 
-@keyframes shiftPlaceholder {
-  from {
-    top: 1rem;
-    left: 1rem;
-    scale: 1;
-  }
-  to {
-    top: 0;
-    left: 0;
-    scale: 0.5;
-  }
+input[type="radio"] + .inputPlaceholder {
+  display: none;
 }
 
 .input {
@@ -58,5 +50,26 @@
   &[type="phone"] {
     background-color: blue;
     padding: 1rem;
+  }
+  &[type="radio"] {
+    grid-area: 1 / 1;
+    z-index: -1;
+  }
+}
+
+.shiftPlaceholder {
+  animation: shiftPlaceholder 100ms;
+}
+
+@keyframes shiftPlaceholder {
+  from {
+    top: 1rem;
+    left: 1rem;
+    scale: 1;
+  }
+  to {
+    top: 0;
+    left: 0;
+    scale: 0.5;
   }
 }

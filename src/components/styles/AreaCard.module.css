@@ -1,0 +1,10 @@
+.areaCard {
+  display: grid;
+  background-color: green;
+  height: 300px;
+  min-width: 300px;
+}
+
+.areaHeader {
+  grid-area: 1/1;
+}

@@ -1,6 +1,8 @@
+import styles from "./styles/FormGroup.module.css";
+
 function FormGroup({ children, headline }) {
   return (
-    <fieldset>
+    <fieldset className={styles.areaContainer}>
       <legend>{headline}</legend>
       {children}
     </fieldset>

@@ -1,14 +1,27 @@
+"use client";
 import SubmitForm from "@/components/SubmitForm";
 import FormGroup from "@/components/FormGroup";
 import Input from "@/components/Input";
 import AttendeeInput from "@/components/AttendeeInput";
+import AreaCard from "@/components/AreaCard";
+import { useState, useEffect } from "react";
 
-export const metadata = {
-  title: "Yggdrasil | Booking",
-  description: "Dive into a dynamic celebration blending music, arts, and culture inspired by the legendary World Tree.",
-};
+//TODO Cant use when "use client" is active. Fix
+// export const metadata = {
+//   title: "Yggdrasil | Booking",
+//   description: "Dive into a dynamic celebration blending music, arts, and culture inspired by the legendary World Tree.",
+// };
 
 function Booking() {
+  const [campingAreas, setCampingAreas] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:8080/available-spots")
+      .then((res) => res.json())
+      .then((data) => {
+        setCampingAreas(data);
+      });
+  }, []);
   return (
     <div>
       <h1>This is the booking page</h1>
@@ -19,13 +32,13 @@ function Booking() {
           <Input type="number" required id="ticket-amount" labelText="Select amount of VIP tickets" />
         </FormGroup>
         <FormGroup headline="Available areas">
-          {/* //TODO Map out by areas */}
-          <Input type="radio" name="svartheim" id="svartheim" labelText="Svartheim" placeholder="Svartheim" />
-          <Input type="radio" name="nilfheim" id="nilfheim" labelText="Nilfheim" placeholder="Nilfheim" />
-          <Input type="radio" name="helheim" id="helheim" labelText="Helheim" placeholder="Helheim" />
-          <Input type="radio" name="muspelheim" id="muspelheim" labelText="Muspelheim" placeholder="Muspelheim" />
-          <Input type="radio" name="alfheim" id="alfheim" labelText="Alfheim" placeholder="Alfheim" />
+          {campingAreas.map((area) => (
+            <AreaCard key={area.area} areaName={area.area}>
+              <Input type="radio" name={area.area} id={area.area} labelText={area.area} placeholder={area.area} />
+            </AreaCard>
+          ))}
         </FormGroup>
+        <button>Continue</button>
         <FormGroup headline="Extras">
           <Input type="checkbox" id="green-camping" labelText="Choose green camping" />
           {/* if two people or more, show following */}
@@ -39,11 +52,11 @@ function Booking() {
           {/* Map following by how many tickets have been selected */}
           <AttendeeInput />
         </FormGroup>
-        <FormGroup headline="Payer information">
-          <Input placeholder="First name" type="text" required id="payer-firstname" name="name" labelText="First name of payer" />
-          <Input placeholder="Last name" type="text" required id="payer-surname" name="name" labelText="Last name of payer" />
-          <Input placeholder="Email" type="email" required id="payer-email" name="email" labelText="Email of payer" />
-          <Input placeholder="Phone" type="phone" required inputmode="numeric" id="payer-phone" name="email" labelText="Phone of payer" />
+        <FormGroup headline="Credit card holder information">
+          <Input placeholder="First name" type="text" required id="payer-firstname" name="name" labelText="First name of credit card holder" />
+          <Input placeholder="Last name" type="text" required id="payer-surname" name="name" labelText="Last name of credit card holder" />
+          <Input placeholder="Email" type="email" required id="payer-email" name="email" labelText="Email of credit card holder" />
+          <Input placeholder="Phone" type="phone" required inputmode="numeric" id="payer-phone" name="email" labelText="Phone of credit card holder" />
           <FormGroup headline="Payment information">
             {/* //TODO fix restrictions on input fields corresponding to requirements for cc, cvc and exp date */}
             <Input placeholder="Credit / Debit card number" type="text" required id="cc-number" name="cc-number" inputmode="numeric" autocomplete="cc-number" maxlength="19" labelText="Credit/Debit card number" />
