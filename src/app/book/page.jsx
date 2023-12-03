@@ -35,6 +35,8 @@ function Booking() {
           {campingAreas.map((area) => (
             <AreaCard key={area.area} areaName={area.area}>
               <Input type="radio" name={area.area} id={area.area} labelText={area.area} placeholder={area.area} />
+              <p>Total spots: {area.spots}</p>
+              <p>Available spots: {area.available}</p>
             </AreaCard>
           ))}
         </FormGroup>
@@ -53,10 +55,10 @@ function Booking() {
           <AttendeeInput />
         </FormGroup>
         <FormGroup headline="Credit card holder information">
-          <Input placeholder="First name" type="text" required id="payer-firstname" name="name" labelText="First name of credit card holder" />
-          <Input placeholder="Last name" type="text" required id="payer-surname" name="name" labelText="Last name of credit card holder" />
-          <Input placeholder="Email" type="email" required id="payer-email" name="email" labelText="Email of credit card holder" />
-          <Input placeholder="Phone" type="phone" required inputmode="numeric" id="payer-phone" name="email" labelText="Phone of credit card holder" />
+          <Input placeholder="First name" type="text" required id="payer-firstname" name="name" labelText="First name" />
+          <Input placeholder="Last name" type="text" required id="payer-surname" name="name" labelText="Last name" />
+          <Input placeholder="Email" type="email" required id="payer-email" name="email" labelText="Email" />
+          <Input placeholder="Phone" type="phone" required inputmode="numeric" id="payer-phone" name="email" labelText="Phone" />
           <FormGroup headline="Payment information">
             {/* //TODO fix restrictions on input fields corresponding to requirements for cc, cvc and exp date */}
             <Input placeholder="Credit / Debit card number" type="text" required id="cc-number" name="cc-number" inputmode="numeric" autocomplete="cc-number" maxlength="19" labelText="Credit/Debit card number" />

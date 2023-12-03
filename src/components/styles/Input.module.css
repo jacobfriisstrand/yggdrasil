@@ -10,54 +10,34 @@
   border-width: 0;
 }
 
-.inputContainer {
-  position: relative;
+.label:has(input[type="text"]),
+.label:has(input[type="email"]),
+.label:has(input[type="phone"]) {
+  display: grid;
+  width: fit-content;
+  align-items: center;
 }
 
-.inputPlaceholder {
-  position: absolute;
-  top: 1rem;
-  left: 1rem;
-  pointer-events: none;
+.label input[type="text"] ~ .labelText,
+.label input[type="email"] ~ .labelText,
+.label input[type="phone"] ~ .labelText,
+.label input[type="text"],
+.label input[type="email"],
+.label input[type="phone"] {
+  grid-area: 1/1;
+  padding: 1.2rem;
 }
 
-.inputContainer:has(input[type="radio"]) {
-  background-color: red;
-  display: contents;
+.labelText {
+  z-index: 1;
 }
 
-input[type="radio"] + .inputPlaceholder {
-  display: none;
+.label input[type="radio"] ~ .labelText {
+  color: red;
+  /* opacity: 0; */
 }
 
-.input {
-  &[type="checkbox"] {
-    background-color: lime;
-    appearance: none;
-    padding: 0.5rem;
-  }
-
-  &[type="email"] {
-    background-color: red;
-    padding: 1rem;
-  }
-
-  &[type="text"] {
-    background-color: green;
-    padding: 1rem;
-  }
-
-  &[type="phone"] {
-    background-color: blue;
-    padding: 1rem;
-  }
-  &[type="radio"] {
-    grid-area: 1 / 1;
-    z-index: -1;
-  }
-}
-
-.shiftPlaceholder {
+/* .shiftPlaceholder {
   animation: shiftPlaceholder 100ms;
 }
 
@@ -72,4 +52,4 @@ input[type="radio"] + .inputPlaceholder {
     left: 0;
     scale: 0.5;
   }
-}
+} */
