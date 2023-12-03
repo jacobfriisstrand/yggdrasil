@@ -1,8 +1,6 @@
 import styles from "./styles/Input.module.css";
 
 function Input({ type, name, placeholder, id, labelText, ...whatever }) {
-
-
   return (
     <div>
       <label className={styles.visuallyHidden} htmlFor={id} {...whatever}>
