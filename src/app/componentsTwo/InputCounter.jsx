@@ -10,7 +10,7 @@ function InputCounter() {
   return (
     <>
       <label htmlFor="numberInput" name="numberInput"></label>
-      <input type="number" id="numberInput" min="0" readonly value={totalValue} />
+      <input type="number" id="numberInput" min="0" readOnly value={totalValue} />
       <button onClick={() => setPlusValue((plus) => plus + 1)}>Plus</button>
       <button
         onClick={() => {
