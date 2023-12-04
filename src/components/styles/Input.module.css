@@ -1,3 +1,13 @@
+.focused {
+  transform: translate(-15px, -20px);
+font-size: .5rem;
+  transition: all 100ms;
+}
+
+.labelText {
+    transition: all 100ms;
+}
+
 .visuallyHidden {
   position: absolute;
   width: 1px;
@@ -28,8 +38,8 @@
   padding: 1.2rem;
 }
 
-.labelText {
-  z-index: 1;
+.input {
+  min-width: 20rem;
 }
 
 .label input[type="radio"] ~ .labelText {
