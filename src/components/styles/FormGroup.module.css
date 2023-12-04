@@ -1,5 +1,11 @@
-.areaContainer:has(input[type="radio"]) {
+.areaContainer:nth-of-type(2) {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+
+.areas {
+  display: flex;
   justify-content: space-between;
 }

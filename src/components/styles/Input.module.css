@@ -1,11 +1,20 @@
-.focused {
-  transform: translate(-15px, -20px);
-font-size: .5rem;
-  transition: all 100ms;
+@media (prefers-reduced-motion: no-preference) {
+  .focused {
+    transform: translate(-15px, -20px);
+    font-size: 0.8rem;
+    transition: all 100ms;
+  }
+
+  .labelText {
+    transition: all 100ms;
+  }
 }
 
-.labelText {
-    transition: all 100ms;
+@media (prefers-reduced-motion: reduce) {
+  .labelText {
+    transform: translate(-15px, -20px);
+    font-size: 0.8rem;
+  }
 }
 
 .label:has(input[type="text"]),
@@ -29,25 +38,3 @@ font-size: .5rem;
 .input {
   min-width: 20rem;
 }
-
-.label input[type="radio"] ~ .labelText {
-  color: red;
-  /* opacity: 0; */
-}
-
-/* .shiftPlaceholder {
-  animation: shiftPlaceholder 100ms;
-}
-
-@keyframes shiftPlaceholder {
-  from {
-    top: 1rem;
-    left: 1rem;
-    scale: 1;
-  }
-  to {
-    top: 0;
-    left: 0;
-    scale: 0.5;
-  }
-} */

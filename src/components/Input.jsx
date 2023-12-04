@@ -3,7 +3,6 @@ import { useState } from "react";
 
 function Input({ type, name, placeholder, id, labelText, ...whatever }) {
   const [isFocused, setFocused] = useState(false);
-  console.log(isFocused);
   return (
     <>
       <label className={styles.label} htmlFor={id} {...whatever}>

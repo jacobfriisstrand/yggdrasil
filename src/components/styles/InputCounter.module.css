@@ -9,13 +9,3 @@
   white-space: nowrap;
   border-width: 0;
 }
-
-.input:checked + .label, .label:hover {
-  box-shadow: 0 0 0 1px red;
-}
-
-.label {
-    padding: 1rem;
-    cursor: pointer;
-      box-shadow: 0 0 0 1px black;
-}

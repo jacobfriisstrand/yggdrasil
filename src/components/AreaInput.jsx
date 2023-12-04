@@ -2,11 +2,17 @@ import { useState } from "react";
 import styles from "./styles/AreaInput.module.css";
 
 function Input(props) {
-  const [isFocused, setFocused] = useState(false);
-  console.log(isFocused);
   return (
     <>
-      <input className={styles.input + " " + styles.visuallyHidden} type={props.type} name="area" id={props.id} />
+      <input
+        className={styles.input + " " + styles.visuallyHidden}
+        type={props.type}
+        name="area"
+        id={props.id}
+        onChange={() => {
+          props.setSelectedArea((area) => props.id);
+        }}
+      />
       <label className={styles.label} htmlFor={props.id}>
         <div className={styles.visuallyHidden}>{props.labelText}</div>
         <h3>{props.areaName}</h3>
