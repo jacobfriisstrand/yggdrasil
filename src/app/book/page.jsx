@@ -3,7 +3,7 @@ import SubmitForm from "@/components/SubmitForm";
 import FormGroup from "@/components/FormGroup";
 import Input from "@/components/Input";
 import AttendeeInput from "@/components/AttendeeInput";
-import AreaCard from "@/components/AreaCard";
+import AreaInput from "@/components/AreaInput";
 import { useState, useEffect } from "react";
 
 //TODO Cant use when "use client" is active. Fix
@@ -33,11 +33,7 @@ function Booking() {
         </FormGroup>
         <FormGroup headline="Available areas">
           {campingAreas.map((area) => (
-            <AreaCard key={area.area} areaName={area.area}>
-              <Input type="radio" name={area.area} id={area.area} labelText={area.area} placeholder={area.area} />
-              <p>Total spots: {area.spots}</p>
-              <p>Available spots: {area.available}</p>
-            </AreaCard>
+            <AreaInput key={area.area} type="radio" areaName={area.area} id={area.area} labelText={area.area} availableSpots={area.available} totalSpots={area.spots} />
           ))}
         </FormGroup>
         <button>Continue</button>

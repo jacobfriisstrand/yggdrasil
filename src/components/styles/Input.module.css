@@ -8,18 +8,6 @@ font-size: .5rem;
     transition: all 100ms;
 }
 
-.visuallyHidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border-width: 0;
-}
-
 .label:has(input[type="text"]),
 .label:has(input[type="email"]),
 .label:has(input[type="phone"]) {
