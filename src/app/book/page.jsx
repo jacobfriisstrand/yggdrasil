@@ -62,10 +62,11 @@ function Booking() {
               .map((area) => (
                 <AreaInput key={area.area} type="radio" areaName={area.area} id={area.area} labelText={area.area} availableSpots={area.available} totalSpots={area.spots} setSelectedArea={setSelectedArea} />
               ))}
+            {/* //TODO handle PUT request onClick */}
+            <button>Continue</button>
           </FormGroup>
         )}
-        {/* //TODO handle PUT request onClick */}
-        <button>Continue</button>
+
         <FormGroup headline="Extras" classStyle="extras">
           <Input type="checkbox" id="green-camping" labelText="Choose green camping" />
           {/* if two people or more, show following */}
