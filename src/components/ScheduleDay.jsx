@@ -7,7 +7,7 @@ function ScheduleDay(props) {
     return (
       <div>
         {day.map((band) => (
-          <ScheduleAct start={band.start} act={band.act} />
+          <ScheduleAct start={band.start} act={band.act} key={band.act} />
         ))}
       </div>
     );
