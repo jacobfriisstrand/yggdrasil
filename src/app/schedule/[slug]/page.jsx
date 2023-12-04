@@ -1,8 +1,8 @@
 "use client";
 
-import Button from "@/app/componentsTwo/Button";
-import InputCounter from "@/app/componentsTwo/InputCounter";
-import ScheduleDay from "@/app/componentsTwo/ScheduleDay";
+import Button from "@/components/Button";
+import InputCounter from "@/components/InputCounter";
+import ScheduleDay from "@/components/ScheduleDay";
 import { useEffect, useState } from "react";
 
 function Schedule() {
