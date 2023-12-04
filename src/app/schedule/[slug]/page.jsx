@@ -7,18 +7,17 @@ import { useEffect, useState } from "react";
 
 function Schedule() {
   const [schedule, setSchedule] = useState({});
+  const [day, setDay] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:8080/schedule")
+    fetch("http://localhost:8080/schedule/")
       .then((res) => res.json())
       .then((data) => {
         setSchedule(data);
       });
-  }, [{}]);
+  }, []);
 
   console.log(schedule);
-
-  const [day, setDay] = useState("");
 
   return (
     <div>
