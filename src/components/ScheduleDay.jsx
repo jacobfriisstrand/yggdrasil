@@ -3,7 +3,7 @@ import ScheduleAct from "./ScheduleAct";
 function ScheduleDay(props) {
   console.log(props);
   const drilled = () => {
-    const day = props.schedule.Midgard.mon;
+    const day = props?.schedule?.Midgard?.mon || [];
     return (
       <div>
         {day.map((band) => (
