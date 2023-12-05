@@ -26,8 +26,6 @@ function Booking() {
 
   const [vipValue, setVipValue] = useState(0);
   const [regularValue, setRegularValue] = useState(0);
-  const [twoTentValue, setTwoTentValue] = useState(0);
-  const [threeTentValue, setTheeTentValue] = useState(0);
 
   const totalValue = vipValue + regularValue;
 
@@ -57,7 +55,7 @@ function Booking() {
               setShowAvailableAreas(true);
             }}
           >
-            Continue
+            Select tickets
           </button>
         </FormGroup>
         {showAvailableAreas && (
@@ -75,8 +73,8 @@ function Booking() {
           <Input type="checkbox" id="green-camping" labelText="Choose green camping" />
           {/* if two people or more, show following */}
           <FormGroup headline="Choose to have tents set up">
-            <InputCounter ticketName="Amount of 2-person tents" value={twoTentValue} setValue={setTwoTentValue} />
-            <InputCounter ticketName="Amount of 3-person tents" value={threeTentValue} setValue={setTheeTentValue} />
+            <InputCounter ticketName="Amount of 2-person tents" />
+            <InputCounter ticketName="Amount of 3-person tents" />
           </FormGroup>
         </FormGroup>
         <FormGroup headline="Attendee information">
