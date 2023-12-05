@@ -1,0 +1,10 @@
+.attendeeInput {
+  border: 1px solid black;
+  width: fit-content;
+  margin-bottom: 2rem;
+  padding: 1rem;
+}
+
+.attendeeInput:first-of-type {
+  margin-top: 2rem;
+}

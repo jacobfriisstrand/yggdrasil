@@ -1,11 +1,9 @@
-.areaContainer:nth-of-type(2) {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+.fieldset {
+  padding: 1rem;
 }
-
 
 .areas {
   display: flex;
   justify-content: space-between;
 }
+

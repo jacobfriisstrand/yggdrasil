@@ -26,14 +26,18 @@ function Booking() {
 
   const [vipValue, setVipValue] = useState(0);
   const [regularValue, setRegularValue] = useState(0);
+  const [twoTentValue, setTwoTentValue] = useState(0);
+  const [threeTentValue, setTheeTentValue] = useState(0);
 
   const totalValue = vipValue + regularValue;
 
-  console.log("Total Value:", totalValue);
+  console.log("Total number of tickets", totalValue);
 
   const [showAvailableAreas, setShowAvailableAreas] = useState(false);
 
   const [selectedArea, setSelectedArea] = useState("");
+
+  const [tickets, setTickets] = useState([]);
 
   return (
     <div>
@@ -41,11 +45,12 @@ function Booking() {
       <SubmitForm>
         <FormGroup headline="Select ticket amount and type" classStyle="tickets">
           <TicketCard ticketName="Asgard Elite Access" ticketType="VIP Access" price="1299 DKK">
-            <InputCounter ticketName="Asgard Elite Access" value={vipValue} setValue={setVipValue} />
+            <InputCounter setTickets={setTickets} ticketName="Asgard Elite Access" value={vipValue} setValue={setVipValue} />
           </TicketCard>
           <TicketCard ticketName="Midgard Explorer Pass" ticketType="Regular Access" price="799 DKK">
-            <InputCounter ticketName="Midgard Explorer Pass" value={regularValue} setValue={setRegularValue} />
+            <InputCounter setTickets={setTickets} ticketName="Midgard Explorer Pass" value={regularValue} setValue={setRegularValue} />
           </TicketCard>
+          {/* //TODO: Have option to select pre booked camping spot */}
           <button
             type="button"
             onClick={() => {
@@ -63,22 +68,19 @@ function Booking() {
                 <AreaInput key={area.area} type="radio" areaName={area.area} id={area.area} labelText={area.area} availableSpots={area.available} totalSpots={area.spots} setSelectedArea={setSelectedArea} />
               ))}
             {/* //TODO handle PUT request onClick */}
-            <button>Continue</button>
+            <button type="button">Continue</button>
           </FormGroup>
         )}
-
         <FormGroup headline="Extras" classStyle="extras">
           <Input type="checkbox" id="green-camping" labelText="Choose green camping" />
           {/* if two people or more, show following */}
           <FormGroup headline="Choose to have tents set up">
-            {/* //TODO change to +/- buttons */}
-            <Input type="number" id="two-person-tent-amount" labelText="Select amount of 2-person tents" />
-            <Input type="number" id="three-person-tent-amount" labelText="Select amount of 3-person tents" />
+            <InputCounter ticketName="Amount of 2-person tents" value={twoTentValue} setValue={setTwoTentValue} />
+            <InputCounter ticketName="Amount of 3-person tents" value={threeTentValue} setValue={setTheeTentValue} />
           </FormGroup>
         </FormGroup>
         <FormGroup headline="Attendee information">
-          {/* Map following by how many tickets have been selected */}
-          <AttendeeInput />
+          <AttendeeInput tickets={tickets} />
         </FormGroup>
         <FormGroup headline="Credit card holder information">
           <Input placeholder="First name" type="text" required id="payer-firstname" name="name" labelText="First name" />
