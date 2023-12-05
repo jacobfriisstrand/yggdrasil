@@ -8,9 +8,9 @@ function AttendeeInput({ tickets }) {
         <div className={styles.attendeeInput} key={ticket.id}>
           <p>#{ticket.id + 1}</p>
           <p>{ticket.ticketName}</p>
-          <Input type="text" required id="attendee-name" name="name" labelText="Full name" />
-          <Input type="email" required id="attendee-email" name="email" labelText="Email" />
-          <Input type="phone" required id="attendee-phone" name="phone" labelText="Phone" />
+          <Input type="text" id="attendee-name" name="name" labelText="Full name" />
+          <Input type="email" id="attendee-email" name="email" labelText="Email" />
+          <Input type="phone" id="attendee-phone" name="phone" labelText="Phone" />
         </div>
       ))}
     </>

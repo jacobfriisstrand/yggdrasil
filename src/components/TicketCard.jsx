@@ -1,9 +1,8 @@
 function TicketCard({ children, ticketName, ticketType, price }) {
   return (
     <div>
-      <h2>{ticketName}</h2>
-      <p>{ticketType}</p>
-      <p>{price}</p>
+      <h4>{ticketName}</h4>
+      <p>{price} DKK</p>
       {children}
     </div>
   );
