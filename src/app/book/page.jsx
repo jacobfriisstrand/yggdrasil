@@ -43,6 +43,8 @@ function Booking() {
 
   const [showTickets, setShowTickets] = useState([]);
 
+  const [reservationID, setReservationID] = useState("");
+
   async function reserveSpot() {
     let headersList = {
       "Content-Type": "application/json",
@@ -60,19 +62,24 @@ function Booking() {
       headers: headersList,
     });
 
-    let bookingID = await response.json();
-    console.log(bookingID);
+    let booking = await response.json();
+    console.log(booking);
+    console.log(booking.id);
+
+    setReservationID(booking.id);
   }
 
   async function submit(e) {
     e.preventDefault();
-    let headersList = { "Content-Type": "application/json" };
+    let headersList = {
+      "Content-Type": "application/json",
+    };
+    let bodyContent = JSON.stringify({ id: reservationID });
 
     let response = await fetch("http://localhost:8080/fullfill-reservation", {
       method: "POST",
+      body: bodyContent,
       headers: headersList,
-      // TODO: Vi kan sende formen afsted, men vi mangler at få fat på ID
-      body: JSON.stringify({}),
     });
 
     let orderID = await response.json();
