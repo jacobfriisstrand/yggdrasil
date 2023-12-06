@@ -109,7 +109,7 @@ function Booking() {
             </FormGroup>
           )}
           <FormGroup headline="Extras" classStyle="extras">
-            <GreenCampingInput type="checkbox" id="green-camping" labelText="Choose green camping" price={`${priceGreenCamping} DKK`} />
+            <GreenCampingInput type="checkbox" id="green-camping" labelText="Add green camping option" price={`+${priceGreenCamping} DKK`} />
             {/* //TODO: if two people or more, show following */}
             <FormGroup headline="Choose to have tents set up">
               <InputCounter ticketName="Amount of 2-person tents" />
