@@ -1,11 +1,5 @@
-
-
-function SubmitForm({ children }) {
-   function submit(e) {
-     e.preventDefault();
-   }
-
-
+function SubmitForm({ children, submit }) {
+  
   return (
     <form onSubmit={submit}>
       <h2>This is SubmitForm</h2>

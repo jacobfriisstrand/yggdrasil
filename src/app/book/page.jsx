@@ -60,8 +60,23 @@ function Booking() {
       headers: headersList,
     });
 
-    let data = await response.json();
-    console.log(data);
+    let bookingID = await response.json();
+    console.log(bookingID);
+  }
+
+  async function submit(e) {
+    e.preventDefault();
+    let headersList = { "Content-Type": "application/json" };
+
+    let response = await fetch("http://localhost:8080/fullfill-reservation", {
+      method: "POST",
+      headers: headersList,
+      // TODO: Vi kan sende formen afsted, men vi mangler at få fat på ID
+      body: JSON.stringify({}),
+    });
+
+    let orderID = await response.json();
+    console.log(orderID);
   }
 
   const priceVip = 1200;
@@ -71,7 +86,7 @@ function Booking() {
   return (
     <>
       <div className={styles.bookingContainer}>
-        <SubmitForm>
+        <SubmitForm submit={submit}>
           <FormGroup headline="Select ticket amount and type" classStyle="tickets">
             <TicketCard ticketName="Asgard Elite Access" ticketType="VIP Access" price={`${priceVip} DKK`}>
               <InputCounter price={priceVip} setTickets={setTickets} ticketName="Asgard Elite Access" value={vipValue} setValue={setVipValue} />
@@ -96,7 +111,6 @@ function Booking() {
                 .map((area) => (
                   <InputRadio setTickets={setTickets} key={area.area} type="radio" areaName={area.area} id={area.area} labelText={area.area} availableSpots={area.available} totalSpots={area.spots} setSelectedArea={setSelectedArea} />
                 ))}
-              {/* //TODO handle PUT request onClick */}
               <button
                 type="button"
                 onClick={() => {
@@ -135,7 +149,7 @@ function Booking() {
         </SubmitForm>
         <TicketBasket showTickets={showTickets}>
           {showTickets.map((ticket) => (
-            <BasketItem key={ticket.ticketName} ticketName={ticket.ticketName} ticketType={ticket.ticketType} price={ticket.price} />
+            <BasketItem key={ticket.id} ticketName={ticket.ticketName} ticketType={ticket.ticketType} price={ticket.price} />
           ))}
           <hr></hr>
           <p>{selectedArea}</p>
