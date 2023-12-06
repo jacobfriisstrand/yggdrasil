@@ -1,4 +1,4 @@
-import styles from "./styles/AreaInput.module.css";
+import styles from "./styles/InputRadio.module.css";
 
 function InputRadio(props) {
   return (
