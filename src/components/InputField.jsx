@@ -1,7 +1,7 @@
-import styles from "./styles/Input.module.css";
+import styles from "./styles/InputField.module.css";
 import { useState } from "react";
 
-function Input({ type, name, placeholder, id, labelText, ...whatever }) {
+function InputField({ type, name, placeholder, id, labelText, ...whatever }) {
   const [isFocused, setFocused] = useState(false);
   return (
     <>
@@ -13,4 +13,4 @@ function Input({ type, name, placeholder, id, labelText, ...whatever }) {
   );
 }
 
-export default Input;
+export default InputField;

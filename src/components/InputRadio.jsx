@@ -1,7 +1,6 @@
-import { useState } from "react";
 import styles from "./styles/AreaInput.module.css";
 
-function Input(props) {
+function InputRadio(props) {
   return (
     <>
       <input
@@ -23,4 +22,4 @@ function Input(props) {
   );
 }
 
-export default Input;
+export default InputRadio;

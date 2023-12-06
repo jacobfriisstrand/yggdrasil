@@ -1,4 +1,4 @@
-import Input from "@/components/Input";
+import Input from "@/components/InputField";
 import styles from "@/components/styles/AttendeeInput.module.css";
 
 function AttendeeInput({ tickets }) {

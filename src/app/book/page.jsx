@@ -1,16 +1,16 @@
 "use client";
 import SubmitForm from "@/components/SubmitForm";
 import FormGroup from "@/components/FormGroup";
-import Input from "@/components/Input";
+import InputField from "@/components/InputField";
 import AttendeeInput from "@/components/AttendeeInput";
-import AreaInput from "@/components/AreaInput";
+import InputRadio from "@/components/InputRadio";
 import InputCounter from "@/components/InputCounter";
 import { useState, useEffect } from "react";
 import TicketCard from "@/components/TicketCard";
 import TicketBasket from "@/components/TicketBasket";
 import styles from ".//Booking.module.css";
 import BasketItem from "@/components/BasketItem";
-import GreenCampingInput from "@/components/GreenCampingInput";
+import InputCheckBox from "@/components/InputCheckBox";
 
 //TODO Cant use when "use client" is active. Fix
 // export const metadata = {
@@ -94,7 +94,7 @@ function Booking() {
               {campingAreas
                 .filter((area) => area.available > totalValue)
                 .map((area) => (
-                  <AreaInput setTickets={setTickets} key={area.area} type="radio" areaName={area.area} id={area.area} labelText={area.area} availableSpots={area.available} totalSpots={area.spots} setSelectedArea={setSelectedArea} />
+                  <InputRadio setTickets={setTickets} key={area.area} type="radio" areaName={area.area} id={area.area} labelText={area.area} availableSpots={area.available} totalSpots={area.spots} setSelectedArea={setSelectedArea} />
                 ))}
               {/* //TODO handle PUT request onClick */}
               <button
@@ -109,7 +109,7 @@ function Booking() {
             </FormGroup>
           )}
           <FormGroup headline="Extras" classStyle="extras">
-            <GreenCampingInput type="checkbox" id="green-camping" labelText="Add green camping option" price={`+${priceGreenCamping} DKK`} />
+            <InputCheckBox type="checkbox" id="green-camping" labelText="Add green camping option" price={`+${priceGreenCamping} DKK`} />
             {/* //TODO: if two people or more, show following */}
             <FormGroup headline="Choose to have tents set up">
               <InputCounter ticketName="Amount of 2-person tents" />
@@ -120,15 +120,15 @@ function Booking() {
             <AttendeeInput tickets={tickets} />
           </FormGroup>
           <FormGroup headline="Credit card holder information">
-            <Input placeholder="First name" type="text" id="payer-firstname" name="name" labelText="First name" />
-            <Input placeholder="Last name" type="text" id="payer-surname" name="name" labelText="Last name" />
-            <Input placeholder="Email" type="email" id="payer-email" name="email" labelText="Email" />
-            <Input placeholder="Phone" type="phone" inputMode="numeric" id="payer-phone" name="email" labelText="Phone" />
+            <InputField placeholder="First name" type="text" id="payer-firstname" name="name" labelText="First name" />
+            <InputField placeholder="Last name" type="text" id="payer-surname" name="name" labelText="Last name" />
+            <InputField placeholder="Email" type="email" id="payer-email" name="email" labelText="Email" />
+            <InputField placeholder="Phone" type="phone" inputMode="numeric" id="payer-phone" name="email" labelText="Phone" />
             <FormGroup headline="Payment information">
               {/* //TODO fix restrictions on input fields corresponding to requirements for cc, cvc and exp date */}
-              <Input placeholder="Credit / Debit card number" type="text" id="cc-number" name="cc-number" inputMode="numeric" autoComplete="cc-number" maxLength="19" labelText="Credit/Debit card number" />
-              <Input placeholder="MM/YYYY" type="text" id="expiration-date" name="expiration-date" inputMode="numeric" autoComplete="cc-exp" maxLength="7" labelText="Expiration Date" />
-              <Input placeholder="123" type="text" id="cvc-number" name="cvc-number" inputMode="numeric" autoComplete="cc-csc" maxLength="3" labelText="CVC number" />
+              <InputField placeholder="Credit / Debit card number" type="text" id="cc-number" name="cc-number" inputMode="numeric" autoComplete="cc-number" maxLength="19" labelText="Credit/Debit card number" />
+              <InputField placeholder="MM/YYYY" type="text" id="expiration-date" name="expiration-date" inputMode="numeric" autoComplete="cc-exp" maxLength="7" labelText="Expiration Date" />
+              <InputField placeholder="123" type="text" id="cvc-number" name="cvc-number" inputMode="numeric" autoComplete="cc-csc" maxLength="3" labelText="CVC number" />
             </FormGroup>
           </FormGroup>
           <button>SUBMIT FORM</button>

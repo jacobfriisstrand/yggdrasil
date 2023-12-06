@@ -1,6 +1,6 @@
-import styles from "./styles/GreenCampingInput.module.css";
+import styles from "./styles/InputCheckBox.module.css";
 
-function GreenCampingInput({ type, id, labelText, price }) {
+function InputCheckBox({ type, id, labelText, price }) {
   return (
     <div className={styles.greenCampingInput}>
       <input className={styles.input + " " + styles.visuallyHidden} type={type} id={id} />
@@ -13,4 +13,4 @@ function GreenCampingInput({ type, id, labelText, price }) {
   );
 }
 
-export default GreenCampingInput;
+export default InputCheckBox;
