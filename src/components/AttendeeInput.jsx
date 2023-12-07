@@ -1,4 +1,4 @@
-import Input from "@/components/InputField";
+import InputField from "@/components/InputField";
 import styles from "@/components/styles/AttendeeInput.module.css";
 
 function AttendeeInput({ tickets }) {
@@ -6,11 +6,13 @@ function AttendeeInput({ tickets }) {
     <>
       {tickets.map((ticket) => (
         <div className={styles.attendeeInput} key={ticket.id}>
-          <p>#{ticket.id + 1}</p>
-          <p>{ticket.ticketName}</p>
-          <Input type="text" id="attendee-name" name="name" labelText="Full name" />
-          <Input type="email" id="attendee-email" name="email" labelText="Email" />
-          <Input type="phone" id="attendee-phone" name="phone" labelText="Phone" />
+          <div className={styles.ticketInfo}>
+            <p>#{ticket.id + 1}</p>
+            <p>{ticket.ticketName}</p>
+          </div>
+          <InputField type="text" id={"attendee-name" + ticket.id} name="name" labelText="Full name" />
+          <InputField type="email" id={"attendee-email" + ticket.id} name="email" labelText="Email" />
+          <InputField type="phone" id={"attendee-phone" + ticket.id} name="phone" labelText="Phone" />
         </div>
       ))}
     </>

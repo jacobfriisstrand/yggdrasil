@@ -1,11 +1,10 @@
-import React from "react";
-
 function ScheduleAct(props) {
   return (
-    <div>
+    <a href={`/bands/${props.act}`}>
       <p>{props.start}</p>
       <p>{props.act}</p>
-    </div>
+      <p>{props.genre}</p>
+    </a>
   );
 }
 

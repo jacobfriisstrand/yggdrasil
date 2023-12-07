@@ -8,3 +8,9 @@
 .attendeeInput:first-of-type {
   margin-top: 2rem;
 }
+
+.ticketInfo {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}

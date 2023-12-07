@@ -1,7 +1,6 @@
 import ScheduleAct from "./ScheduleAct";
 
 function ScheduleDay(props) {
-  console.log(props);
   const drilled = () => {
     // const day = props?.schedule?.Midgard?.mon || [];
     const midgard = props?.schedule?.Midgard[props.day] || [];
@@ -14,7 +13,7 @@ function ScheduleDay(props) {
         <div>
           <h3>Midgard</h3>
           {midgard.map((band) => (
-            <ScheduleAct start={band.start} act={band.act} key={band.end} />
+            <ScheduleAct start={band.start} act={band.act} key={band.end} genre={band.genre} />
           ))}
         </div>
         <div>
