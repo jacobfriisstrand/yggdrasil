@@ -1,7 +1,6 @@
 import ScheduleAct from "./ScheduleAct";
 
 function ScheduleDay(props) {
-  console.log(props);
   const drilled = () => {
     // const day = props?.schedule?.Midgard?.mon || [];
     const midgard = props?.schedule?.Midgard[props.day] || [];

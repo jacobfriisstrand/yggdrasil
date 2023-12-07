@@ -3,8 +3,26 @@ import Button from "@/components/Button";
 import ScheduleDay from "@/components/ScheduleDay";
 import { useState } from "react";
 
-function WrapperSchedule(props) {
+function WrapperSchedule({ ...props }) {
   const [day, setDay] = useState("");
+
+  const newBands = [];
+  for (const scene in props.schedule) {
+    for (const day in props.schedule[scene]) {
+      props.schedule[scene][day].forEach((slot) => {
+        if (slot.act !== "break") {
+          slot = {
+            day,
+            scene,
+            ...slot,
+            ...props.bands.filter((band) => band.name === slot.act)[0],
+          };
+        }
+        newBands.push(slot);
+      });
+    }
+    console.log(newBands);
+  }
 
   return (
     <div className="schedule-layout">
@@ -24,7 +42,7 @@ function WrapperSchedule(props) {
         <Button btnTxt="Sunday" scheduleDay="sun" setDay={setDay} />
       </div>
       <div className="scheduleDay">
-        <ScheduleDay schedule={props.schedule} day={day} />
+        <ScheduleDay schedule={props.schedule} day={day} newBands={newBands} />
       </div>
     </div>
   );
