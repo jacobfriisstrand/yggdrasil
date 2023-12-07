@@ -1,14 +1,15 @@
+import Link from "next/link";
 import React from "react";
 
 function ScheduleAct(props) {
   return (
-    <div>
+    <Link props={props} href={`/bands/${props.slug}`}>
       <h3>{props.name}</h3>
       <p>
         {props.start} - {props.end}
       </p>
       <p>{props.genre}</p>
-    </div>
+    </Link>
   );
 }
 

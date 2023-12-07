@@ -2,10 +2,9 @@ import ScheduleAct from "./ScheduleAct";
 import styles from "./styles/ScheduleDay.module.css";
 
 function ScheduleDay(props) {
-
-    const midgard = props?.schedule?.Midgard[props.day] || [];
-    const jotunheim = props?.schedule?.Jotunheim[props.day] || [];
-    const vanaheim = props?.schedule?.Vanaheim[props.day] || [];
+  // const midgard = props?.schedule?.Midgard[props.day] || [];
+  // const jotunheim = props?.schedule?.Jotunheim[props.day] || [];
+  // const vanaheim = props?.schedule?.Vanaheim[props.day] || [];
 
   return (
     <div className={styles.acts}>
