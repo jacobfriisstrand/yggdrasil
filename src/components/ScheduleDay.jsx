@@ -1,37 +1,42 @@
 import ScheduleAct from "./ScheduleAct";
+import styles from "./styles/ScheduleDay.module.css";
 
 function ScheduleDay(props) {
-  const drilled = () => {
-    // const day = props?.schedule?.Midgard?.mon || [];
-    const midgard = props?.schedule?.Midgard[props.day] || [];
-    const jotunheim = props?.schedule?.Jotunheim[props.day] || [];
-    const vanaheim = props?.schedule?.Vanaheim[props.day] || [];
-
-    //TODO: condition der siger at det starter på mon
-    return (
-      <div className="acts">
-        <div>
-          <h3>Midgard</h3>
-          {midgard.map((band) => (
-            <ScheduleAct start={band.start} act={band.act} key={band.end} />
+  console.log(props.bands.name);
+  return (
+    <div className={styles.acts}>
+      <div>
+        <h3>Midgard</h3>
+        {props.bands
+          .filter((band) => band.scene === "Midgard")
+          .map((bands) => (
+            <div key={bands.slug}>
+              <ScheduleAct {...bands} />
+            </div>
           ))}
-        </div>
-        <div>
-          <h3>Jotunheim</h3>
-          {jotunheim.map((band) => (
-            <ScheduleAct start={band.start} act={band.act} key={band.end} />
-          ))}
-        </div>
-        <div>
-          <h3>Vanaheim</h3>
-          {vanaheim.map((band) => (
-            <ScheduleAct start={band.start} act={band.act} key={band.end} />
-          ))}
-        </div>
       </div>
-    );
-  };
-  return drilled();
+      <div>
+        <h3>Jotunheim</h3>
+        {props.bands
+          .filter((band) => band.scene === "Jotunheim")
+          .map((bands) => (
+            <div key={bands.slug}>
+              <ScheduleAct {...bands} />
+            </div>
+          ))}
+      </div>
+      <div>
+        <h3>Vanaheim</h3>
+        {props.bands
+          .filter((band) => band.scene === "Vanaheim")
+          .map((bands) => (
+            <div key={bands.slug}>
+              <ScheduleAct {...bands} />
+            </div>
+          ))}
+      </div>
+    </div>
+  );
 }
 
 export default ScheduleDay;

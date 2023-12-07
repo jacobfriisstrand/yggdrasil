@@ -6,7 +6,7 @@ import { useState } from "react";
 function WrapperSchedule({ ...props }) {
   const [day, setDay] = useState("");
 
-  const newBands = [];
+  const bands = [];
   for (const scene in props.schedule) {
     for (const day in props.schedule[scene]) {
       props.schedule[scene][day].forEach((slot) => {
@@ -18,14 +18,17 @@ function WrapperSchedule({ ...props }) {
             ...props.bands.filter((band) => band.name === slot.act)[0],
           };
         }
-        newBands.push(slot);
+        bands.push(slot);
       });
     }
-    console.log(newBands);
+    // console.log(bands);
   }
 
   return (
     <div className="schedule-layout">
+      {bands.map((band) => {
+        <p>{band.act}</p>;
+      })}
       <div className="buttons">
         <Button btnTxt="Monday" scheduleDay="mon" setDay={setDay} />
 
@@ -42,7 +45,7 @@ function WrapperSchedule({ ...props }) {
         <Button btnTxt="Sunday" scheduleDay="sun" setDay={setDay} />
       </div>
       <div className="scheduleDay">
-        <ScheduleDay schedule={props.schedule} day={day} newBands={newBands} />
+        <ScheduleDay day={day} bands={bands} />
       </div>
     </div>
   );

@@ -3,9 +3,10 @@ import React from "react";
 function ScheduleAct(props) {
   return (
     <div>
-      <p>{props.start}</p>
-      <p>{props.act}</p>
-      <p>{props.genre}</p>
+      <h3>{props.name}</h3>
+      <p>
+        {props.start} - {props.end}
+      </p>
       <p>{props.genre}</p>
     </div>
   );
