@@ -5,6 +5,7 @@ import { useState } from "react";
 
 function WrapperSchedule({ ...props }) {
   const [day, setDay] = useState("");
+  console.log(day);
 
   const bands = [];
   for (const scene in props.schedule) {
