@@ -1,11 +1,11 @@
 import styles from "./styles/BasketItem.module.css";
 
-function BasketItem({ ticketName, price }) {
+function BasketItem({ ticketName, price, showTickets, selectedArea, ticketType }) {
   return (
-    <div className={styles.basketItem}>
-      <h4>1x {ticketName}</h4>
+    <div className={!showTickets ? styles.hidden + " " + styles.basketItem : styles.basketItem}>
+      <h4>{ticketName}</h4>
       <p>{price} DKK</p>
-
+      {ticketType === "Festival Ticket" && <p>{selectedArea}</p>}
     </div>
   );
 }

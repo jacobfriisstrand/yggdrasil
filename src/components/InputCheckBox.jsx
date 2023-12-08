@@ -1,9 +1,9 @@
 import styles from "./styles/InputCheckBox.module.css";
 
-function InputCheckBox({ type, id, labelText, price }) {
+function InputCheckBox({ type, id, labelText, price, onChange }) {
   return (
-    <div className={styles.greenCampingInput}>
-      <input className={styles.input + " " + styles.visuallyHidden} type={type} id={id} />
+    <div>
+      <input className={styles.input + " " + styles.visuallyHidden} onChange={onChange} type={type} id={id} />
       <label className={styles.label} htmlFor={id}>
         <>
           {labelText} {price}

@@ -1,7 +1,7 @@
 import styles from "./styles/InputCounter.module.css";
 import AttendeeInput from "./AttendeeInput";
 
-function InputCounter({ ticketName, value, setValue, setTickets, price }) {
+function InputCounter({ ticketName, value, setValue, setTickets, price, ticketType }) {
   const totalValue = value;
 
   return (
@@ -19,6 +19,7 @@ function InputCounter({ ticketName, value, setValue, setTickets, price }) {
               ticketName,
               id: o.length,
               price: price,
+              ticketType: ticketType,
             })
           );
         }}
