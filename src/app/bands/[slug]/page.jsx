@@ -18,6 +18,7 @@ async function BandPage({ params }) {
 
   const band = await res.json();
 
+  // Hvis billedstien ikke findes, returner 404
   if (res.status != 200) return notFound();
 
   // Tjek om billedstiens kilde starter med "https"
@@ -26,13 +27,13 @@ async function BandPage({ params }) {
   // Hvis ikke, tilføj "localhost:8080/" før billedestien
   const imagePath = checkLogoPath ? band.logo : `http://localhost:8080/${band.logo}`;
 
+  console.log(band);
   return (
     <div>
-      <Image src={imagePath} alt={`Image of ${band.name}`} width={1920} height={500} objectFit="cover" />
+      <Image priority src={imagePath} alt={`Image of ${band.name}`} width={99999} height={500} style={{ objectFit: "cover", maxWidth: "100%", maxHeight: "500px", objectPosition: "center" }} />
       <h1>{band.name}</h1>
       <p>{band.genre}</p>
       <p>{band.bio}</p>
-      {/* Brug den opdaterede billedsti i <Image> komponenten */}
     </div>
   );
 }

@@ -3,7 +3,7 @@ import React from "react";
 
 function ScheduleAct(props) {
   return (
-    <Link props={props} href={`/bands/${props.slug}`}>
+    <Link bands={props.bands} href={`/bands/${props.slug}`}>
       <h3>{props.name}</h3>
       <p>
         {props.start} - {props.end}
