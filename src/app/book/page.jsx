@@ -22,7 +22,7 @@ import TotalAmount from "@/components/TotalAmount";
 function Booking() {
   const [campingAreas, setCampingAreas] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:8080/available-spots")
+    fetch("http://https://funky-melodious-jingle.glitch.me/available-spots")
       .then((res) => res.json())
       .then((data) => {
         setCampingAreas(data);
@@ -87,7 +87,7 @@ function Booking() {
       purchase: [showTickets],
     });
 
-    let response = await fetch("http://localhost:8080/reserve-spot", {
+    let response = await fetch("http://https://funky-melodious-jingle.glitch.me/reserve-spot", {
       method: "PUT",
       body: bodyContent,
       headers: headersList,
@@ -108,7 +108,7 @@ function Booking() {
     };
     let bodyContent = JSON.stringify({ id: reservationID });
 
-    let response = await fetch("http://localhost:8080/fullfill-reservation", {
+    let response = await fetch("http://https://funky-melodious-jingle.glitch.me/fullfill-reservation", {
       method: "POST",
       body: bodyContent,
       headers: headersList,
