@@ -4,8 +4,7 @@ import ScheduleDay from "@/components/ScheduleDay";
 import { useState } from "react";
 
 function WrapperSchedule({ ...props }) {
-  const [day, setDay] = useState("");
-  console.log(day);
+  const [day, setDay] = useState("mon");
 
   const bands = [];
   for (const scene in props.schedule) {

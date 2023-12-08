@@ -2,13 +2,14 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 
 export async function generateStaticParams() {
+  
   const res = await fetch("http://localhost:8080/bands");
   const pages = await res.json();
 
   const paths = pages.map((page) => {
     return { slug: page.slug };
   });
-
+  
   return paths;
 }
 
