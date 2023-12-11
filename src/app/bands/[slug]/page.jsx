@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 
 export async function generateStaticParams() {
-  const res = await fetch("https://funky-melodious-jingle.glitch.me/bands");
+  const res = await fetch("http://localhost:8080/bands");
   const pages = await res.json();
 
   const paths = pages.map((page) => {
@@ -14,9 +14,7 @@ export async function generateStaticParams() {
 
 async function BandPage({ params }) {
   const { slug } = params;
-  const res = await fetch(
-    `https://funky-melodious-jingle.glitch.me/bands/${slug}`,
-  );
+  const res = await fetch(`http://localhost:8080/bands/${slug}`);
 
   const band = await res.json();
 
@@ -29,7 +27,7 @@ async function BandPage({ params }) {
   // Hvis ikke, tilføj "localhost:8080/" før billedestien
   const imagePath = checkLogoPath
     ? band.logo
-    : `https://funky-melodious-jingle.glitch.me/${band.logo}`;
+    : `http://localhost:8080/${band.logo}`;
 
   console.log(band);
   return (

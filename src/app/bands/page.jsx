@@ -5,9 +5,9 @@ import TopBands from "@/components/TopBands";
 import styles from ".//Bands.module.css";
 
 async function page() {
-  const bands = await fetch(
-    "https://funky-melodious-jingle.glitch.me/bands/",
-  ).then((res) => res.json());
+  const bands = await fetch("http://localhost:8080/bands/").then((res) =>
+    res.json(),
+  );
 
   return (
     <>

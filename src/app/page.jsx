@@ -19,7 +19,7 @@ export default function Home() {
             objectFit: "cover",
           }}
         ></Image>
-        <h1>Yggdrasil Music Festival 2024</h1>
+        <h1 className="text-4xl">Yggdrasil Music Festival 2024</h1>
         <p>Immerse Yourself in the Mystic Melodies</p>
         <Link href="/bands">LINEUP</Link>
         <Link href="/book">TICKETS</Link>
@@ -27,8 +27,15 @@ export default function Home() {
       </section>
       <section>
         <h2>A Never-Ending Symphony</h2>
-        <p>Immerse yourself in the perpetual celebration of sound. Yggdrasil transcends time, offering a continuous 24/7, 365-day musical journey.</p>
-        <p>Whether it&apos;s dawn or dusk, weekday or weekend, the festival grounds pulsate with an unceasing rhythm, ensuring there&apos;s always a place for you in the eternal dance beneath the branches.</p>
+        <p>
+          Immerse yourself in the perpetual celebration of sound. Yggdrasil
+          transcends time, offering a continuous 24/7, 365-day musical journey.
+        </p>
+        <p>
+          Whether it&apos;s dawn or dusk, weekday or weekend, the festival
+          grounds pulsate with an unceasing rhythm, ensuring there&apos;s always
+          a place for you in the eternal dance beneath the branches.
+        </p>
       </section>
     </main>
   );

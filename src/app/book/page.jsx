@@ -23,7 +23,7 @@ import { intervalToDuration } from "date-fns";
 function Booking() {
   const [campingAreas, setCampingAreas] = useState([]);
   useEffect(() => {
-    fetch("https://funky-melodious-jingle.glitch.me/available-spots")
+    fetch("http://localhost:8080/available-spots")
       .then((res) => res.json())
       .then((data) => {
         setCampingAreas(data);
@@ -90,14 +90,11 @@ function Booking() {
       purchase: [showTickets],
     });
 
-    let response = await fetch(
-      "https://funky-melodious-jingle.glitch.me/reserve-spot",
-      {
-        method: "PUT",
-        body: bodyContent,
-        headers: headersList,
-      },
-    );
+    let response = await fetch("http://localhost:8080/reserve-spot", {
+      method: "PUT",
+      body: bodyContent,
+      headers: headersList,
+    });
 
     let booking = await response.json();
     setReservationID(booking.id);
@@ -124,7 +121,7 @@ function Booking() {
     });
 
     let response = await fetch(
-      "https://funky-melodious-jingle.glitch.me/fullfill-reservation",
+      "http://localhost:8080/fullfill-reservation",
       {
         method: "POST",
         body: bodyContent,

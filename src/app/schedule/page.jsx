@@ -1,12 +1,12 @@
 import WrapperSchedule from "@/components/WrapperSchedule";
 
 async function Schedule() {
-  const bands = await fetch(
-    "https://funky-melodious-jingle.glitch.me/bands/",
-  ).then((res) => res.json());
-  const schedule = await fetch(
-    "https://funky-melodious-jingle.glitch.me/schedule/",
-  ).then((res) => res.json());
+  const bands = await fetch("http://localhost:8080/bands/").then((res) =>
+    res.json(),
+  );
+  const schedule = await fetch("http://localhost:8080/schedule/").then((res) =>
+    res.json(),
+  );
 
   return (
     <div>
