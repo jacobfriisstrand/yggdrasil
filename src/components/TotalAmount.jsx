@@ -2,8 +2,10 @@ function TotalAmount(props) {
   const vipTotal = props.vipValue * props.priceVIP;
   const regularTotal = props.regularValue * props.priceRegular;
   let greenCampingTotal = props.priceGreenCamping;
-  const twoPersonTentTotal = props.twoPersonTentValue * props.priceTwoPersonTent;
-  const threePersonTentTotal = props.threePersonTentValue * props.priceThreePersonTent;
+  const twoPersonTentTotal =
+    props.twoPersonTentValue * props.priceTwoPersonTent;
+  const threePersonTentTotal =
+    props.threePersonTentValue * props.priceThreePersonTent;
   const bookingFee = 99;
 
   if (props.greenCamping === true) {
@@ -12,8 +14,18 @@ function TotalAmount(props) {
     greenCampingTotal = 0;
   }
 
-  const total = vipTotal + regularTotal + greenCampingTotal + twoPersonTentTotal + threePersonTentTotal + bookingFee;
+  const total =
+    vipTotal +
+    regularTotal +
+    greenCampingTotal +
+    twoPersonTentTotal +
+    threePersonTentTotal +
+    bookingFee;
   const subtotal = total - greenCampingTotal - bookingFee;
+
+  {
+    props.setTotalSpendAmount(() => total);
+  }
 
   return (
     <div>
