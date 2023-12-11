@@ -22,7 +22,7 @@ async function BandPage({ params }) {
   if (res.status != 200) return notFound();
 
   // Tjek om billedstiens kilde starter med "https"
-  const checkLogoPath = band.logo.startsWith("https");
+  const checkLogoPath = band.logo.startsWith("http");
 
   // Hvis ikke, tilføj "localhost:8080/" før billedestien
   const imagePath = checkLogoPath

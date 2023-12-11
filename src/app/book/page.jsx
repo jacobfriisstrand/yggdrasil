@@ -171,7 +171,7 @@ function Booking() {
   )}`;
 
   return (
-    <div className="flex place-items-center justify-center">
+    <div className="">
       <SubmitForm submit={submit}>
         <FormGroup
           headline="Select ticket amount and type"
