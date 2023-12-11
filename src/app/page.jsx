@@ -19,7 +19,7 @@ export default function Home() {
             objectFit: "cover",
           }}
         ></Image>
-        <h1 className="text-4xl">Yggdrasil Music Festival 2024</h1>
+        <h1 className="font-heading text-4xl">Yggdrasil Music Festival 2024</h1>
         <p>Immerse Yourself in the Mystic Melodies</p>
         <Link href="/bands">LINEUP</Link>
         <Link href="/book">TICKETS</Link>

@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: "heading";
+  src: url(/public/fonts/etna-regular.woff2) format(woff2);
+}
+
+@font-face {
+  font-family: "subheading";
+  src: url(/public/fonts/etna-italic.woff2) format(woff2);
+}
+
+@font-face {
+  font-family: "body";
+  src: url(/public/fonts/helvetica.woff2) format(woff2);
+}

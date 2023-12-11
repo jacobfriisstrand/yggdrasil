@@ -1,8 +1,6 @@
-import styles from "./styles/BasketItem.module.css";
-
 function BasketItem({ ticketName, price, showTickets, selectedArea, ticketType }) {
   return (
-    <div className={!showTickets ? styles.hidden + " " + styles.basketItem : styles.basketItem}>
+    <div className={!showTickets ? `text-red-500` + " " + `text-blue-500` : `text-green-500`}>
       <h4>{ticketName}</h4>
       <p>{price} DKK</p>
       {ticketType === "Festival Ticket" && <p>{selectedArea}</p>}

@@ -1,12 +1,9 @@
-import styles from "./styles/InputCounter.module.css";
-import AttendeeInput from "./AttendeeInput";
-
 function InputCounter({ ticketName, value, setValue, setTickets, price, ticketType }) {
   const totalValue = value;
 
   return (
     <>
-      <label className={styles.visuallyHidden} htmlFor="numberInput" name="numberInput">
+      <label htmlFor="numberInput" name="numberInput">
         {ticketName}
       </label>
       <button

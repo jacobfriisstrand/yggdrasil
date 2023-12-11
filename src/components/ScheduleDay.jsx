@@ -1,9 +1,8 @@
 import ScheduleAct from "./ScheduleAct";
-import styles from "./styles/ScheduleDay.module.css";
 
 function ScheduleDay(props) {
   return (
-    <div className={styles.acts}>
+    <div>
       <div>
         <h3>Midgard</h3>
         {props.bands

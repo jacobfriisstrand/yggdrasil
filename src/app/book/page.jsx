@@ -8,7 +8,6 @@ import InputCounter from "@/components/InputCounter";
 import { useState, useEffect } from "react";
 import TicketCard from "@/components/TicketCard";
 import TicketBasket from "@/components/TicketBasket";
-import styles from ".//Booking.module.css";
 import BasketItem from "@/components/BasketItem";
 import InputCheckBox from "@/components/InputCheckBox";
 import TotalAmount from "@/components/TotalAmount";
@@ -103,15 +102,20 @@ function Booking() {
 
   async function submit(e) {
     e.preventDefault();
-    let headersList = {
-      "Content-Type": "application/json",
+    let supabaseHeadersList = {
+      Prefer: "return=representation",
       apikey:
         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN4YWtwb2RzbHltYWF2aWJzb2NoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDE3NjM5MzgsImV4cCI6MjAxNzMzOTkzOH0.PLsNs7E4UVDAvk-sC9gzY-8glk81cR8ZCt24bBLxt7U",
-      Prefer: "return=representation",
-      "Access-Control-Allow-Headers": "Accept",
     };
-    let bodyContent = JSON.stringify({
+
+    let reserveHeader = {
+      "Content-Type": "application/json",
+    };
+
+    let reserveBodyContent = JSON.stringify({
       id: reservationID,
+    });
+    let supabaseBodyContent = JSON.stringify({
       first_name: "Jacob",
       last_name: "Jonas",
       email: "jacob@jonas.dk",
@@ -124,14 +128,14 @@ function Booking() {
       "http://localhost:8080/fullfill-reservation",
       {
         method: "POST",
-        body: bodyContent,
-        headers: headersList,
+        body: reserveBodyContent,
+        headers: reserveHeader,
       },
       "https://sxakpodslymaavibsoch.supabase.co/rest/v1/payment_info",
       {
         method: "POST",
-        body: bodyContent,
-        headers: headersList,
+        body: supabaseBodyContent,
+        headers: supabaseHeadersList,
       },
     );
 
@@ -140,7 +144,7 @@ function Booking() {
     let formData = new FormData(e.target);
     console.log(formData);
 
-    let data = await response.text();
+    let data = await response.json();
     console.log(data);
   }
 
@@ -158,7 +162,7 @@ function Booking() {
 
   return (
     <>
-      <div className={styles.bookingContainer}>
+      <div>
         <SubmitForm submit={submit}>
           <FormGroup
             headline="Select ticket amount and type"

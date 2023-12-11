@@ -1,9 +1,8 @@
 import React from "react";
-import styles from "./styles/FormGroup.module.css";
 
 function FormGroup({ children, headline, classStyle }) {
   return (
-    <fieldset className={`${styles[classStyle]} ${styles.fieldset}`}>
+    <fieldset>
       <legend>{headline}</legend>
       {children}
     </fieldset>

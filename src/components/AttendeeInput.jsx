@@ -1,5 +1,4 @@
 import Input from "@/components/InputField";
-import styles from "@/components/styles/AttendeeInput.module.css";
 
 function AttendeeInput({ tickets }) {
   return (
@@ -7,7 +6,7 @@ function AttendeeInput({ tickets }) {
       {tickets
         .filter((ticket) => ticket.ticketType === "Festival Ticket")
         .map((ticket) => (
-          <div className={styles.attendeeInput} key={ticket.id}>
+          <div key={ticket.id}>
             <p>#{ticket.id + 1}</p>
             <p>{ticket.ticketName}</p>
             <Input type="text" id={"attendee-name" + ticket.id} name="name" labelText="Full name" required/>
