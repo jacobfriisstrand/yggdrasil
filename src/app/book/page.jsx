@@ -111,6 +111,7 @@ function Booking() {
       apikey:
         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN4YWtwb2RzbHltYWF2aWJzb2NoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDE3NjM5MzgsImV4cCI6MjAxNzMzOTkzOH0.PLsNs7E4UVDAvk-sC9gzY-8glk81cR8ZCt24bBLxt7U",
       Prefer: "return=representation",
+      "Access-Control-Allow-Headers": "Accept",
     };
     let bodyContent = JSON.stringify({
       id: reservationID,
