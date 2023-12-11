@@ -14,7 +14,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className="w-full h-full">
       <body
-        className={`${inter.className} w-full h-full mx-4 grid grid-rows-[auto_1fr_auto] md:mx-24 bg-background-light `}
+        className={`${inter.className} h-full mx-4 grid grid-rows-[auto_1fr_auto] md:mx-24 bg-background-light `}
       >
         <header>
           <NavBar />
