@@ -1,0 +1,35 @@
+.bandFlex {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.bandFlex a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.topBands h2 {
+  font-size: 3rem;
+}
+
+.midBands {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+  margin-inline: 2rem;
+  margin-block: 3rem;
+}
+.midBands h3 {
+  font-size: 2rem;
+}
+
+.smallBands {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+  margin-inline: 2rem;
+}
