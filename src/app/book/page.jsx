@@ -22,7 +22,7 @@ import TotalAmount from "@/components/TotalAmount";
 function Booking() {
   const [campingAreas, setCampingAreas] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:8080/available-spots")
+    fetch("https://funky-melodious-jingle.glitch.me/available-spots")
       .then((res) => res.json())
       .then((data) => {
         setCampingAreas(data);
@@ -87,11 +87,14 @@ function Booking() {
       purchase: [showTickets],
     });
 
-    let response = await fetch("http://localhost:8080/reserve-spot", {
-      method: "PUT",
-      body: bodyContent,
-      headers: headersList,
-    });
+    let response = await fetch(
+      "https://funky-melodious-jingle.glitch.me/reserve-spot",
+      {
+        method: "PUT",
+        body: bodyContent,
+        headers: headersList,
+      },
+    );
 
     let booking = await response.json();
     // console.log(booking);
@@ -108,11 +111,14 @@ function Booking() {
     };
     let bodyContent = JSON.stringify({ id: reservationID });
 
-    let response = await fetch("http://localhost:8080/fullfill-reservation", {
-      method: "POST",
-      body: bodyContent,
-      headers: headersList,
-    });
+    let response = await fetch(
+      "https://funky-melodious-jingle.glitch.me/fullfill-reservation",
+      {
+        method: "POST",
+        body: bodyContent,
+        headers: headersList,
+      },
+    );
 
     let orderID = await response.json();
     console.log(orderID);
@@ -128,14 +134,44 @@ function Booking() {
     <>
       <div className={styles.bookingContainer}>
         <SubmitForm submit={submit}>
-          <FormGroup headline="Select ticket amount and type" classStyle="tickets">
-            <TicketCard ticketName="Asgard Elite Access" ticketType="VIP Access" price={`${priceVip} DKK`}>
-              <InputCounter price={priceVip} setTickets={setTickets} ticketType="Festival Ticket" ticketName="Asgard Elite Access" value={vipValue} setValue={setVipValue} />
+          <FormGroup
+            headline="Select ticket amount and type"
+            classStyle="tickets"
+          >
+            <TicketCard
+              ticketName="Asgard Elite Access"
+              ticketType="VIP Access"
+              price={`${priceVip} DKK`}
+            >
+              <InputCounter
+                price={priceVip}
+                setTickets={setTickets}
+                ticketType="Festival Ticket"
+                ticketName="Asgard Elite Access"
+                value={vipValue}
+                setValue={setVipValue}
+              />
             </TicketCard>
-            <TicketCard ticketName="Midgard Explorer Pass" ticketType="Regular Access" price={`${priceRegular} DKK`}>
-              <InputCounter price={priceRegular} setTickets={setTickets} ticketType="Festival Ticket" ticketName="Midgard Explorer Pass" value={regularValue} setValue={setRegularValue} />
+            <TicketCard
+              ticketName="Midgard Explorer Pass"
+              ticketType="Regular Access"
+              price={`${priceRegular} DKK`}
+            >
+              <InputCounter
+                price={priceRegular}
+                setTickets={setTickets}
+                ticketType="Festival Ticket"
+                ticketName="Midgard Explorer Pass"
+                value={regularValue}
+                setValue={setRegularValue}
+              />
             </TicketCard>
-            <InputCheckBox onChange={() => setTentSetup((prev) => !prev)} type="checkbox" id="choose-tent-setup" labelText="Do you want to have the crew set up tents for you?" />
+            <InputCheckBox
+              onChange={() => setTentSetup((prev) => !prev)}
+              type="checkbox"
+              id="choose-tent-setup"
+              labelText="Do you want to have the crew set up tents for you?"
+            />
             <button
               type="button"
               onClick={() => {
@@ -150,7 +186,17 @@ function Booking() {
               {campingAreas
                 .filter((area) => area.available > totalValue)
                 .map((area) => (
-                  <InputRadio setTickets={setTickets} key={area.area} type="radio" areaName={area.area} id={area.area} labelText={area.area} availableSpots={area.available} totalSpots={area.spots} setSelectedArea={setSelectedArea} />
+                  <InputRadio
+                    setTickets={setTickets}
+                    key={area.area}
+                    type="radio"
+                    areaName={area.area}
+                    id={area.area}
+                    labelText={area.area}
+                    availableSpots={area.available}
+                    totalSpots={area.spots}
+                    setSelectedArea={setSelectedArea}
+                  />
                 ))}
               <button
                 type="button"
@@ -167,14 +213,36 @@ function Booking() {
           )}
           {showExtras && (
             <FormGroup headline="Extras" classStyle="extras">
-              {showError && <p>You must pick the same number of tents as tickets</p>}
-              <InputCheckBox onChange={() => setGreenCamping((prev) => !prev)} type="checkbox" id="green-camping" labelText="Add green camping option" price={`+${priceGreenCamping} DKK`} />
+              {showError && (
+                <p>You must pick the same number of tents as tickets</p>
+              )}
+              <InputCheckBox
+                onChange={() => setGreenCamping((prev) => !prev)}
+                type="checkbox"
+                id="green-camping"
+                labelText="Add green camping option"
+                price={`+${priceGreenCamping} DKK`}
+              />
               {/* //TODO: if two people or more, show following */}
               {/* <InputCheckBox onChange={() => setShowAttendeeInput((prev) => !prev)} type="checkbox" id="choose-tent-setup" labelText="Do you want to have the crew set up tents for you?" /> */}
               {tentSetup && (
                 <FormGroup headline="Choose to have tents set up">
-                  <InputCounter price={priceTwoPersonTent} ticketName="2-person tent" ticketType="Tent ticket" value={twoPersonTentValue} setValue={setTwoPersonTentValue} setTickets={setTickets} />
-                  <InputCounter price={priceThreePersonTent} ticketName="3-person tent" ticketType="Tent ticket" value={threePersonTentValue} setValue={setThreePersonTentValue} setTickets={setTickets} />
+                  <InputCounter
+                    price={priceTwoPersonTent}
+                    ticketName="2-person tent"
+                    ticketType="Tent ticket"
+                    value={twoPersonTentValue}
+                    setValue={setTwoPersonTentValue}
+                    setTickets={setTickets}
+                  />
+                  <InputCounter
+                    price={priceThreePersonTent}
+                    ticketName="3-person tent"
+                    ticketType="Tent ticket"
+                    value={threePersonTentValue}
+                    setValue={setThreePersonTentValue}
+                    setTickets={setTickets}
+                  />
                   <button
                     onClick={() => {
                       if (totalValue === totalTentValue) {
@@ -191,7 +259,11 @@ function Booking() {
                   </button>
                 </FormGroup>
               )}
-              {!tentSetup && <button onClick={() => setShowAttendeeInput(true)}>Fill out attendee information</button>}
+              {!tentSetup && (
+                <button onClick={() => setShowAttendeeInput(true)}>
+                  Fill out attendee information
+                </button>
+              )}
             </FormGroup>
           )}
           {showAttendeeInput && (
@@ -201,15 +273,71 @@ function Booking() {
           )}
           {showAttendeeInput && (
             <FormGroup headline="Credit card holder information">
-              <InputField placeholder="First name" type="text" id="payer-firstname" name="first-name" labelText="First name" required />
-              <InputField placeholder="Last name" type="text" id="payer-surname" name="last-name" labelText="Last name" required />
-              <InputField placeholder="Email" type="email" id="payer-email" name="email" labelText="Email" required />
-              <InputField placeholder="Phone" type="phone" inputMode="numeric" id="payer-phone" name="email" labelText="Phone" required />
+              <InputField
+                placeholder="First name"
+                type="text"
+                id="payer-firstname"
+                name="first-name"
+                labelText="First name"
+                required
+              />
+              <InputField
+                placeholder="Last name"
+                type="text"
+                id="payer-surname"
+                name="last-name"
+                labelText="Last name"
+                required
+              />
+              <InputField
+                placeholder="Email"
+                type="email"
+                id="payer-email"
+                name="email"
+                labelText="Email"
+                required
+              />
+              <InputField
+                placeholder="Phone"
+                type="phone"
+                inputMode="numeric"
+                id="payer-phone"
+                name="email"
+                labelText="Phone"
+                required
+              />
               <FormGroup headline="Payment information">
                 {/* //TODO fix restrictions on input fields corresponding to requirements for cc, cvc and exp date */}
-                <InputField placeholder="Credit / Debit card number" type="text" id="cc-number" name="cc-number" inputMode="numeric" autoComplete="cc-number" maxLength="19" labelText="Credit/Debit card number" />
-                <InputField placeholder="MM/YYYY" type="text" id="expiration-date" name="expiration-date" inputMode="numeric" autoComplete="cc-exp" maxLength="7" labelText="Expiration Date" />
-                <InputField placeholder="123" type="text" id="cvc-number" name="cvc-number" inputMode="numeric" autoComplete="cc-csc" maxLength="3" labelText="CVC number" />
+                <InputField
+                  placeholder="Credit / Debit card number"
+                  type="text"
+                  id="cc-number"
+                  name="cc-number"
+                  inputMode="numeric"
+                  autoComplete="cc-number"
+                  maxLength="19"
+                  labelText="Credit/Debit card number"
+                />
+                <InputField
+                  placeholder="MM/YYYY"
+                  type="text"
+                  id="expiration-date"
+                  name="expiration-date"
+                  inputMode="numeric"
+                  autoComplete="cc-exp"
+                  maxLength="7"
+                  labelText="Expiration Date"
+                />
+                <InputField
+                  placeholder="123"
+                  type="text"
+                  id="cvc-number"
+                  name="cvc-number"
+                  inputMode="numeric"
+                  autoComplete="cc-csc"
+                  maxLength="3"
+                  labelText="CVC number"
+                />
               </FormGroup>
               <button>SUBMIT FORM</button>
             </FormGroup>
@@ -217,9 +345,22 @@ function Booking() {
         </SubmitForm>
         <TicketBasket showTickets={showTickets}>
           {tickets.map((ticket) => (
-            <BasketItem showTickets={showTickets} selectedArea={selectedArea} key={ticket.id} ticketName={ticket.ticketName} ticketType={ticket.ticketType} price={ticket.price} />
+            <BasketItem
+              showTickets={showTickets}
+              selectedArea={selectedArea}
+              key={ticket.id}
+              ticketName={ticket.ticketName}
+              ticketType={ticket.ticketType}
+              price={ticket.price}
+            />
           ))}
-          {greenCamping && <BasketItem showTickets={showTickets} ticketName="Green Camping fee" price={priceGreenCamping} />}
+          {greenCamping && (
+            <BasketItem
+              showTickets={showTickets}
+              ticketName="Green Camping fee"
+              price={priceGreenCamping}
+            />
+          )}
           <TotalAmount
             vipValue={vipValue}
             regularValue={regularValue}
