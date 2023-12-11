@@ -1,32 +1,15 @@
-function MobileMenuButton() {
+function MobileMenuButton(props) {
   return (
-    <div>
-      <div
-        class="
-            z-10
-            h-[3px]
-            w-8
-            bg-accent
-            transition-all
-            duration-150
-            before:absolute
-            before:h-[3px]
-            before:w-8
-            before:-translate-y-2
-            before:bg-accent
-            before:transition-all
-            before:duration-150
-            before:content-['']
-            after:absolute
-            after:h-[3px]
-            after:w-8
-            after:translate-y-2
-            after:bg-accent
-            after:transition-all
-            after:duration-150 after:content-[''] relative
-          "
-      ></div>
-    </div>
+    <button
+      aria-expanded={props.menuStatus}
+      onClick={props.toggleMenu}
+      className="z-10 h-fit w-fit md:hidden"
+    >
+      <div className="space-y-2">
+        <div className=" h-[3px] w-8 bg-accent"></div>
+        <div className=" h-[3px] w-8 bg-accent"></div>
+      </div>
+    </button>
   );
 }
 
