@@ -102,19 +102,7 @@ function Booking() {
 
   async function submit(e) {
     e.preventDefault();
-    let supabaseHeadersList = {
-      Prefer: "return=representation",
-      apikey:
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN4YWtwb2RzbHltYWF2aWJzb2NoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDE3NjM5MzgsImV4cCI6MjAxNzMzOTkzOH0.PLsNs7E4UVDAvk-sC9gzY-8glk81cR8ZCt24bBLxt7U",
-    };
 
-    let reserveHeader = {
-      "Content-Type": "application/json",
-    };
-
-    let reserveBodyContent = JSON.stringify({
-      id: reservationID,
-    });
     let supabaseBodyContent = JSON.stringify({
       first_name: "Jacob",
       last_name: "Jonas",
@@ -124,13 +112,14 @@ function Booking() {
       order_value: 12000,
     });
 
-    let response = await fetch(
-      "http://localhost:8080/fullfill-reservation",
-      {
-        method: "POST",
-        body: reserveBodyContent,
-        headers: reserveHeader,
-      },
+    let supabaseHeadersList = {
+      Prefer: "return=representation",
+      apikey:
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN4YWtwb2RzbHltYWF2aWJzb2NoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDE3NjM5MzgsImV4cCI6MjAxNzMzOTkzOH0.PLsNs7E4UVDAvk-sC9gzY-8glk81cR8ZCt24bBLxt7U",
+      "Content-Type": "application/json",
+    };
+
+    let responseSupabase = await fetch(
       "https://sxakpodslymaavibsoch.supabase.co/rest/v1/payment_info",
       {
         method: "POST",
@@ -139,13 +128,30 @@ function Booking() {
       },
     );
 
-    let orderID = await response.json();
+    let reserveHeader = {
+      "Content-Type": "application/json",
+    };
+
+    let reserveBodyContent = JSON.stringify({
+      id: reservationID,
+    });
+
+    let responseReserve = await fetch(
+      "http://localhost:8080/fullfill-reservation",
+      {
+        method: "POST",
+        body: reserveBodyContent,
+        headers: reserveHeader,
+      },
+    );
+
+    // let orderID = await response.json();
 
     let formData = new FormData(e.target);
     console.log(formData);
 
-    let data = await response.json();
-    console.log(data);
+    let supabaseData = await responseSupabase.json();
+    let reserveData = await responseReserve.json();
   }
 
   const priceVip = 1200;

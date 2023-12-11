@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <main>
+    <>
       <section>
         <Image
           priority
@@ -37,6 +37,6 @@ export default function Home() {
           a place for you in the eternal dance beneath the branches.
         </p>
       </section>
-    </main>
+    </>
   );
 }
