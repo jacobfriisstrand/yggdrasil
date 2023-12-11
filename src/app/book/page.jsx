@@ -12,6 +12,7 @@ import styles from ".//Booking.module.css";
 import BasketItem from "@/components/BasketItem";
 import InputCheckBox from "@/components/InputCheckBox";
 import TotalAmount from "@/components/TotalAmount";
+import { intervalToDuration } from "date-fns";
 
 //TODO Cant use when "use client" is active. Fix
 // export const metadata = {
@@ -28,6 +29,17 @@ function Booking() {
         setCampingAreas(data);
       });
   }, []);
+
+  const [timeValue, setTimeValue] = useState(null);
+
+  const [timeLeft, setTimeLeft] = useState(0);
+
+  useEffect(() => {
+    if (timeValue) {
+      setTimeLeft(timeValue);
+      count();
+    }
+  }, [timeValue]);
 
   const [vipValue, setVipValue] = useState(0);
   const [regularValue, setRegularValue] = useState(0);
@@ -50,31 +62,22 @@ function Booking() {
 
   const [reservationID, setReservationID] = useState("");
 
-  const [timeValue, setTimeValue] = useState(null);
-
   const [showError, setShowError] = useState(false);
   const [showExtras, setShowExtras] = useState(false);
 
   const [greenCamping, setGreenCamping] = useState(false);
   const [tentSetup, setTentSetup] = useState(false);
 
-  // const seconds = Math.floor(timeValue / 1000);
-  // console.log("her er mine sekunder " + seconds);
-
-  // const minutes = Math.floor(seconds / 60);
-  // console.log("her er mine minutter " + minutes);
-
-  // function count() {
-  //   let count = timeValue;
-  //   const timer = setInterval(function () {
-  //     count--;
-  //     console.log(count);
-  //     if (count === 0) {
-  //       clearInterval(timer);
-  //       console.log("Time's up!");
-  //     }
-  //   }, 1000);
-  // }
+  function count() {
+    let count = timeValue;
+    const timer = setInterval(function () {
+      count -= 1000;
+      setTimeLeft(count);
+      if (count === 0) {
+        clearInterval(timer);
+      }
+    }, 1000);
+  }
 
   async function reserveSpot() {
     let headersList = {
@@ -97,9 +100,6 @@ function Booking() {
     );
 
     let booking = await response.json();
-    // console.log(booking);
-    console.log(booking.id);
-    console.log(booking.timeout);
     setReservationID(booking.id);
     setTimeValue(booking.timeout);
   }
@@ -108,8 +108,19 @@ function Booking() {
     e.preventDefault();
     let headersList = {
       "Content-Type": "application/json",
+      apikey:
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN4YWtwb2RzbHltYWF2aWJzb2NoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDE3NjM5MzgsImV4cCI6MjAxNzMzOTkzOH0.PLsNs7E4UVDAvk-sC9gzY-8glk81cR8ZCt24bBLxt7U",
+      Prefer: "return=representation",
     };
-    let bodyContent = JSON.stringify({ id: reservationID });
+    let bodyContent = JSON.stringify({
+      id: reservationID,
+      first_name: "Jacob",
+      last_name: "Jonas",
+      email: "jacob@jonas.dk",
+      phone: "80808080",
+      order_amount: 10,
+      order_value: 12000,
+    });
 
     let response = await fetch(
       "https://funky-melodious-jingle.glitch.me/fullfill-reservation",
@@ -118,10 +129,21 @@ function Booking() {
         body: bodyContent,
         headers: headersList,
       },
+      "https://sxakpodslymaavibsoch.supabase.co/rest/v1/payment_info",
+      {
+        method: "POST",
+        body: bodyContent,
+        headers: headersList,
+      },
     );
 
     let orderID = await response.json();
-    console.log(orderID);
+
+    let formData = new FormData(e.target);
+    console.log(formData);
+
+    let data = await response.text();
+    console.log(data);
   }
 
   const priceVip = 1200;
@@ -129,6 +151,12 @@ function Booking() {
   const priceGreenCamping = 249;
   const priceTwoPersonTent = 299;
   const priceThreePersonTent = 399;
+
+  const duration = intervalToDuration({ start: 0, end: timeLeft });
+  const zeroPad = (num) => String(num).padStart(2, "0");
+  const formattedTimeLeft = `${zeroPad(duration.minutes)}:${zeroPad(
+    duration.seconds,
+  )}`;
 
   return (
     <>
@@ -200,9 +228,9 @@ function Booking() {
                 ))}
               <button
                 type="button"
-                onClick={() => {
+                onClick={async () => {
                   setShowTickets((prev) => true);
-                  reserveSpot();
+                  await reserveSpot();
                   // count();
                   setShowExtras(true);
                 }}
@@ -344,6 +372,8 @@ function Booking() {
           )}
         </SubmitForm>
         <TicketBasket showTickets={showTickets}>
+          {timeLeft > 0 && <p>{formattedTimeLeft}</p>}
+
           {tickets.map((ticket) => (
             <BasketItem
               showTickets={showTickets}
