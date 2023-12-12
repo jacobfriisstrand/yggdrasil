@@ -2,8 +2,8 @@ import React from "react";
 
 function FormGroup({ children, headline, classStyle }) {
   return (
-    <fieldset>
-      <legend>{headline}</legend>
+    <fieldset className={classStyle}>
+      <legend className="sr-only">{headline}</legend>
       {children}
     </fieldset>
   );

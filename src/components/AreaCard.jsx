@@ -1,5 +1,3 @@
-import styles from "./styles/AreaCard.module.css";
-
 function AreaCard({ children, areaName }) {
   return (
     <div>

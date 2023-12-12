@@ -69,7 +69,13 @@ function Booking() {
 
   const [totalSpendAmout, setTotalSpendAmount] = useState(0);
 
-  console.log(totalSpendAmout);
+  const [basketStatus, setBasketStatus] = useState(false);
+
+  function toggleBasket() {
+    setBasketStatus(!basketStatus); // Toggle the state
+  }
+
+  console.log(basketStatus);
 
   function count() {
     let count = timeValue;
@@ -171,11 +177,11 @@ function Booking() {
   )}`;
 
   return (
-    <div className="">
+    <div className="overflow-x-hidden">
       <SubmitForm submit={submit}>
         <FormGroup
           headline="Select ticket amount and type"
-          classStyle="tickets"
+          classStyle="space-y-10"
         >
           <TicketCard
             ticketName="Asgard Elite Access"
@@ -221,21 +227,22 @@ function Booking() {
           </button>
         </FormGroup>
         {showAvailableAreas && (
-          <FormGroup headline="Available areas" classStyle="areas">
+          <FormGroup classStyle="flex flex-wrap gap-10">
             {campingAreas
               .filter((area) => area.available > totalValue)
               .map((area) => (
-                <InputRadio
-                  setTickets={setTickets}
-                  key={area.area}
-                  type="radio"
-                  areaName={area.area}
-                  id={area.area}
-                  labelText={area.area}
-                  availableSpots={area.available}
-                  totalSpots={area.spots}
-                  setSelectedArea={setSelectedArea}
-                />
+                <div key={area.area}>
+                  <InputRadio
+                    setTickets={setTickets}
+                    type="radio"
+                    areaName={area.area}
+                    id={area.area}
+                    labelText={area.area}
+                    availableSpots={area.available}
+                    totalSpots={area.spots}
+                    setSelectedArea={setSelectedArea}
+                  />
+                </div>
               ))}
             <button
               type="button"
@@ -381,8 +388,15 @@ function Booking() {
             <button>SUBMIT FORM</button>
           </FormGroup>
         )}
+        <button
+          onClick={toggleBasket}
+          aria-expanded={basketStatus}
+          className="fixed inset-x-4 bottom-8 z-[1] mx-auto rounded-full border-2 border-accent bg-background-light bg-opacity-50 px-4 py-4 backdrop-blur-sm"
+        >
+          {basketStatus ? "Close Basket" : "View Basket"}
+        </button>
       </SubmitForm>
-      <TicketBasket showTickets={showTickets}>
+      <TicketBasket basketStatus={basketStatus} showTickets={showTickets}>
         {timeLeft > 0 && <p>{formattedTimeLeft}</p>}
 
         {tickets.map((ticket) => (

@@ -14,15 +14,17 @@ function NavBar() {
     setMenuStatus(!menuStatus); // Toggle the state
   }
 
-  function viewPortWidth() {
-    if (window.innerWidth > 768) {
-      setMenuStatus(true);
-    }
-  }
-
   // Få animation kun til at køre på små skærme
   const slide = useSpring({
     transform: `translateX(${menuStatus ? 0 : 100}%)`,
+    // display: menuStatus ? "block" : "none",
+    config: {
+      easing: easings.easeInElastic,
+    },
+  });
+
+  const fade = useSpring({
+    opacity: menuStatus ? 1 : 0,
     config: {
       easing: easings.easeInElastic,
     },
@@ -30,28 +32,44 @@ function NavBar() {
 
   return (
     <nav className="flex place-items-center justify-between">
-      <Link className="z-10" href="/" aria-label="Home">
+      <Link
+        onClick={() => setMenuStatus(false)}
+        className="z-20"
+        href="/"
+        aria-label="Home"
+      >
         <Image src={logo} width={75} height={75} alt="Yggdrasil logo"></Image>
       </Link>
       <MobileMenuButton toggleMenu={toggleMenu} menuStatus={menuStatus} />
       <div className="contents md:block">
         <animated.div
-          style={slide}
-          className="absolute left-0 top-0 h-full w-full  bg-background-light bg-opacity-50 backdrop-blur-lg backdrop-filter"
+          style={fade}
+          className={`fixed left-0 top-0 h-full w-full bg-background-light bg-opacity-50 backdrop-blur-md backdrop-filter md:hidden ${
+            menuStatus ? "z-[10]" : "hidden"
+          }`}
         ></animated.div>
+
         <animated.ul
           style={slide}
-          className="absolute bottom-0 right-0 space-y-10  p-8 text-end text-4xl md:block"
+          className="fixed bottom-0 right-0 z-20 space-y-10 p-8 text-end text-4xl md:contents md:text-xl"
         >
-          <li>
-            <Link href="/bands">Acts</Link>
-          </li>
-          <li>
-            <Link href="/schedule">Schedule</Link>
-          </li>
-          <li>
-            <Link href="/book">Tickets</Link>
-          </li>
+          <div className="flex flex-col gap-10 md:flex-row">
+            <li>
+              <Link onClick={() => setMenuStatus(false)} href="/bands">
+                Acts
+              </Link>
+            </li>
+            <li>
+              <Link onClick={() => setMenuStatus(false)} href="/schedule">
+                Schedule
+              </Link>
+            </li>
+            <li>
+              <Link onClick={() => setMenuStatus(false)} href="/book">
+                Tickets
+              </Link>
+            </li>
+          </div>
         </animated.ul>
       </div>
     </nav>

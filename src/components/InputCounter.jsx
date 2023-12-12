@@ -1,12 +1,20 @@
-function InputCounter({ ticketName, value, setValue, setTickets, price, ticketType }) {
+function InputCounter({
+  ticketName,
+  value,
+  setValue,
+  setTickets,
+  price,
+  ticketType,
+}) {
   const totalValue = value;
 
   return (
-    <>
-      <label htmlFor="numberInput" name="numberInput">
+    <div className="flex gap-2 justify-center">
+      <label className="sr-only" htmlFor="numberInput" name="numberInput">
         {ticketName}
       </label>
       <button
+        className="bg-accent p-2 px-4 rounded-sm text-background-light"
         type="button"
         aria-label={`Add 1 ${ticketName} ticket`}
         onClick={() => {
@@ -17,20 +25,23 @@ function InputCounter({ ticketName, value, setValue, setTickets, price, ticketTy
               id: o.length,
               price: price,
               ticketType: ticketType,
-            })
+            }),
           );
         }}
       >
         +
       </button>
-      <input type="number" id="numberInput" readOnly value={totalValue} />
+      <input className="text-center rounded-sm bg-transparent" type="number" id="numberInput" readOnly value={totalValue} />
       <button
+        className="bg-accent p-2 px-4 rounded-sm text-background-light"
         type="button"
         aria-label={`Remove 1 ${ticketName} ticket`}
         onClick={() => {
           setValue(value > 0 ? value - 1 : 0);
           setTickets((o) => {
-            const indexToRemove = o.findIndex((ticket) => ticket.ticketName === ticketName);
+            const indexToRemove = o.findIndex(
+              (ticket) => ticket.ticketName === ticketName,
+            );
             if (indexToRemove !== -1) {
               return o.filter((_, index) => index !== indexToRemove);
             } else {
@@ -41,7 +52,7 @@ function InputCounter({ ticketName, value, setValue, setTickets, price, ticketTy
       >
         -
       </button>
-    </>
+    </div>
   );
 }
 

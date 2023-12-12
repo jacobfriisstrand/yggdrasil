@@ -1,7 +1,7 @@
 function InputRadio(props) {
   return (
     <>
-      <input
+      <input className="sr-only"
         type={props.type}
         name="area"
         id={props.id}
@@ -10,7 +10,7 @@ function InputRadio(props) {
         }}
       />
       <label htmlFor={props.id}>
-        <div>{props.labelText}</div>
+        <div className="sr-only">{props.labelText}</div>
         <h3>{props.areaName}</h3>
         <p>Total spots: {props.totalSpots}</p>
         <p>Available spots: {props.availableSpots}</p>
