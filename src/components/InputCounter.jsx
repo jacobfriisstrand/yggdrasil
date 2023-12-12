@@ -9,12 +9,9 @@ function InputCounter({
   const totalValue = value;
 
   return (
-    <div className="flex gap-2 justify-center">
-      <label className="sr-only" htmlFor="numberInput" name="numberInput">
-        {ticketName}
-      </label>
+    <div className="flex place-items-center gap-2">
       <button
-        className="bg-accent p-2 px-4 rounded-sm text-background-light"
+        className="rounded-sm bg-accent p-2 px-4 text-background-light"
         type="button"
         aria-label={`Add 1 ${ticketName} ticket`}
         onClick={() => {
@@ -31,9 +28,8 @@ function InputCounter({
       >
         +
       </button>
-      <input className="text-center rounded-sm bg-transparent" type="number" id="numberInput" readOnly value={totalValue} />
       <button
-        className="bg-accent p-2 px-4 rounded-sm text-background-light"
+        className="rounded-sm bg-accent p-2 px-4 text-background-light"
         type="button"
         aria-label={`Remove 1 ${ticketName} ticket`}
         onClick={() => {
@@ -52,6 +48,16 @@ function InputCounter({
       >
         -
       </button>
+      <label className="sr-only" htmlFor="numberInput" name="numberInput">
+        {ticketName}
+      </label>
+      <input
+        className="bg-transparent grow rounded-sm border-2 border-accent border-opacity-50 p-2 text-center"
+        type="number"
+        id="numberInput"
+        readOnly
+        value={totalValue}
+      />
     </div>
   );
 }
