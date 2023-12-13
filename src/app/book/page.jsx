@@ -192,10 +192,10 @@ function Booking() {
   )}`;
 
   return (
-    <div className="h-screen gap-10 overflow-x-hidden md:grid lg:grid-cols-[1fr_0.4fr]">
+    <div className="h-full divide-x md:h-screen divide-accent overflow-x-scroll lg:grid lg:grid-cols-[1fr_0.4fr]">
       <SubmitForm submit={submit}>
         <FormGroup
-          headline="Select ticket amount and type"
+          headline="Choose your Yggdrasil experience"
           classStyle="grid md:grid-cols-2 sm:grid-cols-1 gap-8"
         >
           <TicketCard
@@ -211,6 +211,7 @@ function Booking() {
               ticketName="Asgard Elite Access"
               value={vipValue}
               setValue={setVipValue}
+              counterText="Select ticket amount"
             />
           </TicketCard>
           <TicketCard
@@ -226,6 +227,7 @@ function Booking() {
               ticketName="Midgard Explorer Pass"
               value={regularValue}
               setValue={setRegularValue}
+              counterText="Select ticket amount"
             />
           </TicketCard>
           <div className="md:col-span-2">
@@ -282,7 +284,7 @@ function Booking() {
                 setShowTotalAmount(true);
               }}
             >
-              Continue
+              Add to Basket
             </BookingButton>
           </>
         )}
@@ -421,14 +423,7 @@ function Booking() {
             <button>SUBMIT FORM</button>
           </FormGroup>
         )}
-        <button
-          onClick={toggleBasket}
-          aria-expanded={basketStatus}
-          className="fixed inset-x-8 bottom-8 z-[1] mx-auto rounded-full border-2 border-accent bg-background-light bg-opacity-50 px-4 py-4 backdrop-blur-sm md:hidden"
-        >
-          {basketStatus ? "Close Basket" : "View Basket"}
-        </button>
-        <p>
+        {/* <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero ea modi
           molestias, similique tenetur laboriosam repudiandae minus doloribus
           sunt sint cum, quaerat, quod magnam quibusdam officiis. Dignissimos
@@ -486,8 +481,15 @@ function Booking() {
           aperiam numquam placeat repudiandae architecto maxime ipsa doloribus
           excepturi dolor quos itaque maiores sunt reiciendis consequatur
           suscipit dolore expedita eius quia provident repellendus.
-        </p>
+        </p> */}
       </SubmitForm>
+      <button
+        onClick={toggleBasket}
+        aria-expanded={basketStatus}
+        className="fixed inset-x-8 bottom-8 z-[1] mx-auto rounded-full border-2 border-accent bg-background-light bg-opacity-50 px-4 py-4 backdrop-blur-sm lg:hidden"
+      >
+        {basketStatus ? "Close Basket" : "View Basket"}
+      </button>
       <TicketBasket basketStatus={basketStatus} showTickets={showTickets}>
         {timeLeft > 0 && <p>{formattedTimeLeft}</p>}
 
