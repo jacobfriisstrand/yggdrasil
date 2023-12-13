@@ -86,12 +86,6 @@ function Booking() {
 
   const randomImageCategory = getRandomImageCategory();
 
-  const [basketStatus, setBasketStatus] = useState(false);
-
-  function toggleBasket() {
-    setBasketStatus(!basketStatus); // Toggle the state
-  }
-
   function count() {
     let count = timeValue;
     const timer = setInterval(function () {
@@ -483,14 +477,8 @@ function Booking() {
           suscipit dolore expedita eius quia provident repellendus.
         </p> */}
       </SubmitForm>
-      <button
-        onClick={toggleBasket}
-        aria-expanded={basketStatus}
-        className="fixed inset-x-8 bottom-8 z-[1] mx-auto rounded-full border-2 border-accent bg-background-light bg-opacity-50 px-4 py-4 backdrop-blur-sm lg:hidden"
-      >
-        {basketStatus ? "Close Basket" : "View Basket"}
-      </button>
-      <TicketBasket basketStatus={basketStatus} showTickets={showTickets}>
+
+      <TicketBasket showTickets={showTickets}>
         {timeLeft > 0 && <p>{formattedTimeLeft}</p>}
 
         {tickets.map((ticket) => (

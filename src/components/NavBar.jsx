@@ -6,6 +6,9 @@ import MobileMenuButton from "./MobileMenuButton";
 import { useSpring, animated } from "react-spring";
 import { useState } from "react";
 import { easings } from "react-spring";
+import BasketButton from "./BasketButton";
+
+// export const Context = React.createContext();
 
 function NavBar() {
   const [menuStatus, setMenuStatus] = useState(false);
@@ -13,7 +16,6 @@ function NavBar() {
   function toggleMenu() {
     setMenuStatus(!menuStatus); // Toggle the state
   }
-
   // Få animation kun til at køre på små skærme
   const slide = useSpring({
     transform: `translateX(${menuStatus ? 0 : 100}%)`,
@@ -41,6 +43,7 @@ function NavBar() {
         <Image src={logo} width={75} height={75} alt="Yggdrasil logo"></Image>
       </Link>
       <MobileMenuButton toggleMenu={toggleMenu} menuStatus={menuStatus} />
+      <BasketButton />
       <div className="contents md:block">
         <animated.div
           style={fade}
