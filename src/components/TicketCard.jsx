@@ -10,7 +10,7 @@ function TicketCard({
   const imageUrl = `https://source.unsplash.com/random/?${imageCategory}`;
 
   return (
-    <div className="space-y-4 rounded-sm border border-accent bg-foreground-light bg-opacity-20 p-4 shadow-xl ">
+    <div className="space-y-4 rounded-sm border border-accent bg-foreground-light p-4 shadow-xl ">
       <h4 className="font-subheading text-2xl ">{ticketName}</h4>
       <p>{ticketType}</p>
       <Image

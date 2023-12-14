@@ -32,10 +32,10 @@ function TotalAmount(props) {
       <p className="grid-start-1">Booking fee </p>
       <p className="col-start-3">{bookingFee}</p>
       <span className="col-start-4">DKK</span>
-      <p className="col-start-1 row-start-2">Subtotal: </p>
+      <p className="col-start-1 row-start-2">Subtotal</p>
       <p className="col-start-3 row-start-2">{subtotal}</p>
       <span className="col-start-4">DKK</span>
-      <p className="col-start-1 row-start-3">Total: </p>
+      <p className="col-start-1 row-start-3">Total</p>
       <p className="col-start-3 row-start-3">{total}</p>
       <span className="col-start-4">DKK</span>
     </div>

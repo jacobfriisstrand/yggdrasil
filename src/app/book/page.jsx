@@ -42,6 +42,8 @@ function Booking() {
     }
   }, [timeValue]);
 
+  const [showTimeUpModal, setShowTimeUpModal] = useState(false);
+
   const [vipValue, setVipValue] = useState(0);
   const [regularValue, setRegularValue] = useState(0);
 
@@ -100,6 +102,8 @@ function Booking() {
       setTimeLeft(count);
       if (count === 0) {
         clearInterval(timer);
+        // Show the time-up modal
+        setShowTimeUpModal(true);
       }
     }, 1000);
   }
@@ -123,7 +127,8 @@ function Booking() {
 
     let booking = await response.json();
     setReservationID(booking.id);
-    setTimeValue(booking.timeout);
+    setTimeValue(1000);
+    // setTimeValue(booking.timeout);
   }
 
   async function submit(e) {
@@ -194,6 +199,26 @@ function Booking() {
 
   return (
     <div className="min-h-full divide-x divide-accent lg:grid lg:grid-cols-[1fr_0.4fr]">
+      {showTimeUpModal && (
+        <div className="fixed inset-0 flex items-center justify-center">
+          <div className="rounded bg-foreground-light p-8 shadow-lg">
+            <h2 className="mb-4 text-2xl font-bold">Time is up!</h2>
+            <p>
+              Unfortunately, your tickets are no longer on hold. Please refresh
+              the page and try again.
+            </p>
+            <button
+              onClick={() => {
+                setShowTimeUpModal(false);
+                window.location.reload(); // Refresh the page
+              }}
+              className="mt-4 rounded-sm bg-accent px-4 py-2 text-text-dark hover:bg-opacity-80"
+            >
+              Try again
+            </button>
+          </div>
+        </div>
+      )}
       <SubmitForm submit={submit}>
         <FormGroup
           headline="Choose your Yggdrasil experience"
@@ -259,22 +284,21 @@ function Booking() {
                 headline="Select camping area"
                 classStyle="flex flex-wrap gap-10"
               >
-                {campingAreas
-                  .filter((area) => area.available > totalValue)
-                  .map((area) => (
-                    <div key={area.area}>
-                      <InputRadio
-                        setTickets={setTickets}
-                        type="radio"
-                        areaName={area.area}
-                        id={area.area}
-                        labelText={area.area}
-                        availableSpots={area.available}
-                        totalSpots={area.spots}
-                        setSelectedArea={setSelectedArea}
-                      />
-                    </div>
-                  ))}
+                {campingAreas.map((area) => (
+                  <div key={area.area}>
+                    <InputRadio
+                      setTickets={setTickets}
+                      type="radio"
+                      areaName={area.area}
+                      id={area.area}
+                      labelText={area.area}
+                      availableSpots={area.available}
+                      totalSpots={area.spots}
+                      setSelectedArea={setSelectedArea}
+                      disabled={area.available <= totalValue}
+                    />
+                  </div>
+                ))}
               </FormGroup>
             </div>
             <BookingButton
@@ -282,7 +306,6 @@ function Booking() {
               onClick={async () => {
                 setShowTickets((prev) => true);
                 await reserveSpot();
-                // count();
                 setShowExtras(true);
                 setShowTotalAmount(true);
               }}
@@ -485,7 +508,7 @@ function Booking() {
         {greenCamping && (
           <BasketItem
             showTickets={showTickets}
-            ticketName="Green Camping fee"
+            ticketName="Green Camping"
             price={priceGreenCamping}
           />
         )}

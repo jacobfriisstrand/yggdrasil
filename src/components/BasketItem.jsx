@@ -8,7 +8,7 @@ function BasketItem({
   return (
     <div
       className={
-        !showTickets ? `hidden` + " " + `text-blue-500` : `text-green-500`
+        !showTickets ? `hidden`  : "mt-4"
       }
     >
       <div className="grid grid-cols-3 mb-4">
