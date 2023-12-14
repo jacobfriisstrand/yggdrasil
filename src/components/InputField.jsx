@@ -5,7 +5,6 @@ function InputField({ type, name, placeholder, id, labelText, ...whatever }) {
   return (
     <>
       <label htmlFor={id} {...whatever} className="grid w-fit items-center">
-        {/* //TODO: Fix at autocompleted inhold i felterne ikke udløser animation */}
         <input
           className="p-4 [grid-area:1/1]"
           onFocus={() => setFocused((prev) => true)}

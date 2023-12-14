@@ -1,21 +1,24 @@
 import Image from "next/image";
 
-function TicketCard({ children, ticketName, price, imageCategory }) {
+function TicketCard({
+  children,
+  ticketName,
+  price,
+  ticketType,
+  imageCategory,
+}) {
   const imageUrl = `https://source.unsplash.com/random/?${imageCategory}`;
 
   return (
-    <div className="space-y-4 rounded-sm border-2 border-accent p-4">
-      <h4 className="text-center text-xl ">{ticketName}</h4>
+    <div className="space-y-4 rounded-sm border border-accent bg-foreground-light bg-opacity-20 p-4 shadow-xl ">
+      <h4 className="font-subheading text-2xl ">{ticketName}</h4>
+      <p>{ticketType}</p>
       <Image
-        // className="aspect-[9/16] max-h-72 object-cover"
+        className="max-h-72 aspect-square object-cover"
         src={imageUrl}
         alt="ticket image"
         width={1000}
         height={1000}
-        // style={{
-        //   width: "100%",
-        //   height: "auto",
-        // }}
       ></Image>
       <p>{price}</p>
       {children}

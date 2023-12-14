@@ -13,6 +13,7 @@ import InputCheckBox from "@/components/InputCheckBox";
 import TotalAmount from "@/components/TotalAmount";
 import BookingButton from "@/components/BookingButton";
 import { intervalToDuration } from "date-fns";
+import TentCard from "@/components/TentCard";
 
 //TODO Cant use when "use client" is active. Fix
 // export const metadata = {
@@ -192,7 +193,7 @@ function Booking() {
   )}`;
 
   return (
-    <div className="h-full divide-x md:h-screen divide-accent overflow-x-scroll lg:grid lg:grid-cols-[1fr_0.4fr]">
+    <div className="min-h-full divide-x divide-accent lg:grid lg:grid-cols-[1fr_0.4fr]">
       <SubmitForm submit={submit}>
         <FormGroup
           headline="Choose your Yggdrasil experience"
@@ -239,14 +240,16 @@ function Booking() {
                 labelText="Choose prebooked tents"
               />
             </div>
-            <BookingButton
-              type="button"
-              onClick={() => {
-                setShowAvailableAreas(true);
-              }}
-            >
-              Select Tickets
-            </BookingButton>
+            {totalValue > 0 && (
+              <BookingButton
+                type="button"
+                onClick={() => {
+                  setShowAvailableAreas(true);
+                }}
+              >
+                Select Tickets
+              </BookingButton>
+            )}
           </div>
         </FormGroup>
         {showAvailableAreas && (
@@ -284,39 +287,53 @@ function Booking() {
                 setShowTotalAmount(true);
               }}
             >
-              Add to Basket
+              Reserve Tickets
             </BookingButton>
           </>
         )}
+
         {showExtras && (
-          <FormGroup headline="Extras" classStyle="extras">
-            {showError && (
-              <p className="w-fit p-2 text-danger ring-2 ring-danger">
-                You must pick the same number of tents as tickets
-              </p>
-            )}
+          <FormGroup headline="Extras">
+            <InputCheckBox
+              onChange={() => setGreenCamping((prev) => !prev)}
+              type="checkbox"
+              id="green-camping"
+              labelText="Add green camping option"
+              price={`+${priceGreenCamping} DKK`}
+            />
             {tentSetup && (
-              <FormGroup headline="Choose to have tents set up">
-                <h3>2-person tent</h3>
-                <InputCounter
-                  price={priceTwoPersonTent}
-                  ticketName="2-person tent"
-                  ticketType="Tent ticket"
-                  value={twoPersonTentValue}
-                  setValue={setTwoPersonTentValue}
-                  setTickets={setTickets}
-                  headline="2-person tent"
-                />
-                <h3>3-person tent</h3>
-                <InputCounter
-                  price={priceThreePersonTent}
-                  ticketName="3-person tent"
-                  ticketType="Tent ticket"
-                  value={threePersonTentValue}
-                  setValue={setThreePersonTentValue}
-                  setTickets={setTickets}
-                  headline="3-person tent"
-                />
+              <FormGroup
+                headline="Choose to have tents set up"
+                classStyle="grid md:grid-cols-2 sm:grid-cols-1 gap-8"
+              >
+                <TentCard
+                  tentType="Two person glamping tent"
+                  imageSrc="/assets/twopersontent.jpg"
+                >
+                  <InputCounter
+                    price={priceTwoPersonTent}
+                    ticketName="2-person tent"
+                    ticketType="Tent ticket"
+                    value={twoPersonTentValue}
+                    setValue={setTwoPersonTentValue}
+                    setTickets={setTickets}
+                    headline="2-person tent"
+                  />
+                </TentCard>
+                <TentCard
+                  tentType="Three person glamping tent"
+                  imageSrc="/assets/threepersontent.jpg"
+                >
+                  <InputCounter
+                    price={priceThreePersonTent}
+                    ticketName="3-person tent"
+                    ticketType="Tent ticket"
+                    value={threePersonTentValue}
+                    setValue={setThreePersonTentValue}
+                    setTickets={setTickets}
+                    headline="3-person tent"
+                  />
+                </TentCard>
                 <button
                   onClick={() => {
                     if (totalValue === totalTentValue) {
@@ -329,21 +346,19 @@ function Booking() {
                     }
                   }}
                 >
-                  <InputCheckBox
-                    onChange={() => setGreenCamping((prev) => !prev)}
-                    type="checkbox"
-                    id="green-camping"
-                    labelText="Add green camping option"
-                    price={`+${priceGreenCamping} DKK`}
-                  />
+                  {showError && (
+                    <p className="w-fit p-2 text-danger ring-2 ring-danger">
+                      You must pick the same number of tents as tickets
+                    </p>
+                  )}
                   Continue
                 </button>
               </FormGroup>
             )}
             {!tentSetup && (
-              <button onClick={() => setShowAttendeeInput(true)}>
+              <BookingButton onClick={() => setShowAttendeeInput(true)}>
                 Fill out attendee information
-              </button>
+              </BookingButton>
             )}
           </FormGroup>
         )}
@@ -388,7 +403,6 @@ function Booking() {
               required
             />
             <FormGroup headline="Payment information">
-              {/* //TODO fix restrictions on input fields corresponding to requirements for cc, cvc and exp date */}
               <InputField
                 placeholder="Credit / Debit card number"
                 type="text"
@@ -423,72 +437,37 @@ function Booking() {
             <button>SUBMIT FORM</button>
           </FormGroup>
         )}
-        {/* <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero ea modi
-          molestias, similique tenetur laboriosam repudiandae minus doloribus
-          sunt sint cum, quaerat, quod magnam quibusdam officiis. Dignissimos
-          dolor incidunt error cupiditate alias sapiente quia, reiciendis modi
-          exercitationem voluptas. Voluptatem dolores iusto at? Ab, numquam
-          quibusdam illum cumque ipsam dolorem eius omnis. Necessitatibus
-          voluptatibus excepturi similique doloremque, commodi sapiente
-          repudiandae ducimus maiores, cumque alias dignissimos omnis amet
-          adipisci praesentium ullam. Repellendus minima commodi molestiae velit
-          et mollitia eaque, labore quia, temporibus, enim dolore molestias
-          delectus suscipit porro blanditiis. Magni quo ipsam nisi optio tempora
-          veritatis facilis dolore, maiores, similique repellendus porro, nihil
-          suscipit molestias eligendi. Est recusandae accusamus voluptate
-          nesciunt totam consequatur facilis, tempore ad culpa error aspernatur
-          ut rerum magni incidunt quidem praesentium libero iure eos tempora
-          nostrum. Molestiae, ab voluptatibus? Dignissimos sequi nobis
-          recusandae quisquam? Unde ex provident vel non veniam cum facere,
-          repellat officia harum porro saepe dolores quidem nobis odit animi
-          nulla possimus mollitia fugit consectetur ut ad. Fugiat, eos dolores
-          perferendis labore neque libero doloribus, nam facilis dolorum,
-          officia esse sit! Molestias ut recusandae illo veritatis reiciendis
-          assumenda, possimus commodi qui omnis quibusdam quidem iure. Molestias
-          quibusdam quod aut aperiam hic earum dolorum esse reiciendis dolorem
-          ducimus at repudiandae veniam, tenetur cum nihil nesciunt
-          exercitationem quae architecto perferendis molestiae fugit suscipit
-          voluptatum maxime illum! Libero iste tempore officia qui neque itaque
-          facere aliquam nemo ut sunt. Facilis totam doloremque ipsa ratione non
-          unde alias at culpa deserunt autem cupiditate nam error voluptatem,
-          libero labore saepe a voluptatibus aliquid natus laudantium impedit
-          commodi quaerat maiores sapiente. Nobis unde officiis ipsa
-          reprehenderit id minus dolorem accusantium cum. Deserunt vero
-          laboriosam sint dicta odio quaerat, illum inventore sunt, quis fuga
-          delectus rerum nemo asperiores nihil. Culpa doloribus, ratione
-          adipisci ducimus autem eos, animi harum sunt rerum iusto delectus
-          magnam. Recusandae, quos ullam. Quos cum error corrupti qui, rem
-          aperiam ab omnis quas labore quia. Amet asperiores necessitatibus
-          harum impedit a voluptatibus est delectus repudiandae commodi?
-          Eligendi quaerat nemo omnis laborum, suscipit sint aspernatur iure ut
-          quas modi aliquid. Architecto eveniet a porro mollitia facere, alias
-          dolores, beatae, odit et numquam molestias quia? Sit recusandae quidem
-          harum doloribus placeat! Eveniet eligendi assumenda officiis, hic
-          error corrupti magnam quaerat mollitia! Repudiandae sapiente nulla
-          facilis fuga aperiam est nesciunt veniam ratione officia voluptas
-          molestiae placeat modi officiis expedita, voluptatem hic architecto
-          quibusdam. Tempora dolorum doloribus ipsum quod quaerat assumenda
-          dolorem nobis ut cumque esse vel rem saepe iure possimus, aperiam
-          quasi quia. Voluptate illo similique neque, exercitationem corrupti
-          blanditiis quisquam repudiandae beatae. Aliquid sint consequatur
-          porro, quis dolorum earum aliquam maxime enim voluptatum! Porro
-          incidunt odio in dolor voluptatum natus nisi, consequatur temporibus
-          facilis aspernatur, tempora dolorum cum id enim expedita, iste
-          voluptas laudantium a exercitationem dolorem architecto amet? Aut
-          nostrum reiciendis culpa deserunt velit asperiores iusto non odio quas
-          quidem assumenda eius voluptas error explicabo, vero sunt. Est,
-          aperiam numquam placeat repudiandae architecto maxime ipsa doloribus
-          excepturi dolor quos itaque maiores sunt reiciendis consequatur
-          suscipit dolore expedita eius quia provident repellendus.
-        </p> */}
       </SubmitForm>
       <button
         onClick={toggleBasket}
         aria-expanded={basketStatus}
-        className="fixed inset-x-8 bottom-8 z-[1] mx-auto rounded-full border-2 border-accent bg-background-light bg-opacity-50 px-4 py-4 backdrop-blur-sm lg:hidden"
+        className="fixed inset-x-8 bottom-8 z-[2] mx-auto rounded-full border-2 border-accent bg-background-light bg-opacity-50 px-4 py-4 backdrop-blur-sm lg:hidden"
       >
-        {basketStatus ? "Close Basket" : "View Basket"}
+        {basketStatus ? (
+          tickets.length > 0 ? (
+            <>
+              Close Basket{" "}
+              <span className="ml-4 rounded-full p-2 ring-2 ring-accent">
+                {tickets.length}
+              </span>
+              {timeLeft > 0 && <p>{formattedTimeLeft}</p>}
+            </>
+          ) : (
+            "Close Basket"
+          )
+        ) : tickets.length > 0 ? (
+          <>
+            View Basket{" "}
+            <span className="absolute top-2 ml-4 rounded-full p-2 px-4 ring-2 ring-accent">
+              {tickets.length}
+            </span>
+            <span className="absolute ml-4">
+              {timeLeft > 0 && <p>{formattedTimeLeft}</p>}
+            </span>
+          </>
+        ) : (
+          "View Basket"
+        )}
       </button>
       <TicketBasket basketStatus={basketStatus} showTickets={showTickets}>
         {timeLeft > 0 && <p>{formattedTimeLeft}</p>}

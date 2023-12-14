@@ -31,7 +31,7 @@ function NavBar() {
   });
 
   return (
-    <nav className="flex place-items-center justify-between">
+    <nav className="sticky top-0 flex place-items-center justify-between z-10">
       <Link
         onClick={() => setMenuStatus(false)}
         className="z-20"

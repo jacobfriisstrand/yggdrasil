@@ -24,7 +24,7 @@ module.exports = {
       fontFamily: {
         heading: ["heading", "sans-serif"],
         subheading: ["subheading", "sans-serif"],
-        body: ["'body'", "sans-serif"],
+        body: ["body", "sans-serif"],
       },
     },
   },

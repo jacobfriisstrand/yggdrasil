@@ -55,7 +55,7 @@ function InputCounter({
           {ticketName}
         </label>
         <input
-          className="h-[37px] min-h-full w-[50px] grow cursor-none rounded-sm bg-transparent text-center ring-2 ring-accent ring-opacity-50 focus:outline-none"
+          className="h-[37px] min-h-full w-[50px] grow cursor-default rounded-sm bg-transparent text-center ring-2 ring-accent ring-opacity-50 focus:outline-none"
           type="number"
           id="numberInput"
           readOnly
