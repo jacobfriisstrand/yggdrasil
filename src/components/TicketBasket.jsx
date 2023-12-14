@@ -29,9 +29,9 @@ function TicketBasket({ children, basketStatus }) {
           {children}
         </div>
       </animated.aside>
-            <animated.div
+      <animated.div
         style={fade}
-        className=" fixed left-0 top-0 h-full w-full bg-background-light bg-opacity-90 backdrop-blur-md backdrop-filter md:bg-opacity-0 md:hidden "
+        className=" fixed left-0 top-0 h-full w-full bg-background-light bg-opacity-90 backdrop-blur-md backdrop-filter md:hidden md:bg-opacity-0 "
       ></animated.div>
     </div>
   );

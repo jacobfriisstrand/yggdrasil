@@ -6,14 +6,9 @@ function BasketItem({
   ticketType,
 }) {
   return (
-    <div
-      className={
-        !showTickets ? `hidden`  : "mt-4"
-      }
-    >
-      <div className="grid grid-cols-3 mb-4">
-        <h4 className="col-span-2 col-start-1 ">{ticketName}</h4>
-        {/* {ticketType === "Festival Ticket" && <p>{selectedArea}</p>} */}
+    <div className={!showTickets ? `hidden` : "mt-4"}>
+      <div className="mb-4 grid grid-cols-3">
+        <h4 className="col-span-2 col-start-1">{ticketName}</h4>
         <p className="col-start-3">{price}</p>
         <span className="col-start-4">DKK</span>
       </div>

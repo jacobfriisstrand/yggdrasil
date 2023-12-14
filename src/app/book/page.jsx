@@ -75,20 +75,6 @@ function Booking() {
 
   const [totalSpendAmout, setTotalSpendAmount] = useState(0);
 
-  const getRandomImageCategory = () => {
-    const imageCategories = [
-      "festival",
-      "camping",
-      "outdoor",
-      "tent",
-      "woodstock",
-    ];
-    const randomIndex = Math.floor(Math.random() * imageCategories.length);
-    return imageCategories[randomIndex];
-  };
-
-  const randomImageCategory = getRandomImageCategory();
-
   const [basketStatus, setBasketStatus] = useState(false);
 
   function toggleBasket() {
@@ -127,8 +113,7 @@ function Booking() {
 
     let booking = await response.json();
     setReservationID(booking.id);
-    setTimeValue(1000);
-    // setTimeValue(booking.timeout);
+    setTimeValue(booking.timeout);
   }
 
   async function submit(e) {
@@ -198,6 +183,8 @@ function Booking() {
   )}`;
 
   return (
+    // lav den her modal i stedet
+    // https://www.youtube.com/watch?v=YwHJMlvZRCc&ab_channel=CodinginPublic
     <div className="min-h-full divide-x divide-accent lg:grid lg:grid-cols-[1fr_0.4fr]">
       {showTimeUpModal && (
         <div className="fixed inset-0 flex items-center justify-center">

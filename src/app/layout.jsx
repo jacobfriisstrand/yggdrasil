@@ -13,7 +13,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className="h-full w-full">
-      <body className="mx-4 font-body grid h-full grid-rows-[auto_1fr_auto] space-y-10 bg-background-light md:mx-24">
+      <body className="mx-4 font-body grid h-full grid-rows-[auto_1fr_auto] space-y-10 bg-background-light md:mx-24 overflow-x-hidden">
         <header>
           <NavBar />
         </header>
