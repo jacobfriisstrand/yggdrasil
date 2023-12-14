@@ -2,13 +2,19 @@ import { useState } from "react";
 
 function InputField({ type, name, placeholder, id, labelText, ...whatever }) {
   const [isFocused, setFocused] = useState(false);
+
   return (
     <>
-      <label htmlFor={id} {...whatever} className="grid w-fit items-center">
+      <label
+        htmlFor={id}
+        {...whatever}
+        className="grid w-72"
+      >
         <input
-          className="p-4 [grid-area:1/1]"
-          onFocus={() => setFocused((prev) => true)}
+          className="rounded-sm py-4 pl-2 mb-2 [grid-area:1/1] focus:ring-2 focus:ring-accent"
+          onFocus={() => setFocused(true)}
           onBlur={(e) => setFocused(e.target.value.trim() !== "")}
+          onChange={() => setFocused(true)}
           type={type}
           name={name}
           id={id}
@@ -17,10 +23,10 @@ function InputField({ type, name, placeholder, id, labelText, ...whatever }) {
         <div
           className={
             isFocused
-              ? `translate-x-[-20px] translate-y-[-20px] scale-75 transition-all duration-100` +
+              ? `translate-x-[-32px] translate-y-[-8px] scale-75 transition-all duration-100` + // Adjust the duration and ease-out as needed
                 " " +
                 `[grid-area:1/1]`
-              : `p-4 transition-all duration-100 [grid-area:1/1]`
+              : `p-4 transition-all duration-100 [grid-area:1/1]` // Adjust the duration and ease-out as needed
           }
         >
           {labelText}

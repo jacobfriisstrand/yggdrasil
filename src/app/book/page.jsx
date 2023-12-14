@@ -73,6 +73,8 @@ function Booking() {
   const [greenCamping, setGreenCamping] = useState(false);
   const [tentSetup, setTentSetup] = useState(false);
 
+  const [areaChecked, setAreaChecked] = useState(false);
+
   const [totalSpendAmout, setTotalSpendAmount] = useState(0);
 
   const [basketStatus, setBasketStatus] = useState(false);
@@ -252,44 +254,43 @@ function Booking() {
                 labelText="Choose prebooked tents"
               />
             </div>
-            {totalValue > 0 && (
-              <BookingButton
-                type="button"
-                onClick={() => {
-                  setShowAvailableAreas(true);
-                }}
-              >
-                Select Tickets
-              </BookingButton>
-            )}
+            <BookingButton
+              type="button"
+              disabled={totalValue === 0}
+              onClick={() => {
+                setShowAvailableAreas(true);
+              }}
+            >
+              Select Tickets
+            </BookingButton>
           </div>
         </FormGroup>
         {showAvailableAreas && (
           <>
-            <div>
-              <FormGroup
-                headline="Select camping area"
-                classStyle="flex flex-wrap gap-10"
-              >
-                {campingAreas.map((area) => (
-                  <div key={area.area}>
-                    <InputRadio
-                      setTickets={setTickets}
-                      type="radio"
-                      areaName={area.area}
-                      id={area.area}
-                      labelText={area.area}
-                      availableSpots={area.available}
-                      totalSpots={area.spots}
-                      setSelectedArea={setSelectedArea}
-                      disabled={area.available <= totalValue}
-                    />
-                  </div>
-                ))}
-              </FormGroup>
-            </div>
+            <FormGroup
+              headline="Select camping area"
+              classStyle="grid grid-cols-2 gap-10 md:flex md:flex-wrap"
+            >
+              {campingAreas.map((area) => (
+                <div key={area.area}>
+                  <InputRadio
+                    setTickets={setTickets}
+                    type="radio"
+                    areaName={area.area}
+                    id={area.area}
+                    labelText={area.area}
+                    availableSpots={area.available}
+                    setAreaChecked={setAreaChecked}
+                    totalSpots={area.spots}
+                    setSelectedArea={setSelectedArea}
+                    disabled={area.available <= totalValue}
+                  />
+                </div>
+              ))}
+            </FormGroup>
             <BookingButton
               type="button"
+              disabled={!areaChecked}
               onClick={async () => {
                 setShowTickets((prev) => true);
                 await reserveSpot();
@@ -303,7 +304,7 @@ function Booking() {
         )}
 
         {showExtras && (
-          <FormGroup headline="Extras">
+          <FormGroup headline="Extras" classStyle="my-8">
             <InputCheckBox
               onChange={() => setGreenCamping((prev) => !prev)}
               type="checkbox"
@@ -319,6 +320,7 @@ function Booking() {
                 <TentCard
                   tentType="Two person glamping tent"
                   imageSrc="/assets/twopersontent.jpg"
+                  tentPrice={priceTwoPersonTent}
                 >
                   <InputCounter
                     price={priceTwoPersonTent}
@@ -333,6 +335,7 @@ function Booking() {
                 <TentCard
                   tentType="Three person glamping tent"
                   imageSrc="/assets/threepersontent.jpg"
+                  tentPrice={priceThreePersonTent}
                 >
                   <InputCounter
                     price={priceThreePersonTent}
@@ -344,25 +347,27 @@ function Booking() {
                     headline="3-person tent"
                   />
                 </TentCard>
-                <button
-                  onClick={() => {
-                    if (totalValue === totalTentValue) {
-                      setShowAttendeeInput(true);
-                      setShowError(false);
-                    } else if (totalTentValue > totalValue) {
-                      setShowError(true);
-                    } else {
-                      setShowError(true);
-                    }
-                  }}
-                >
+                <div className="relative w-fit">
                   {showError && (
-                    <p className="w-fit p-2 text-danger ring-2 ring-danger">
+                    <p className=" absolute left-full top-0 ml-5 w-52 rounded-sm p-2 text-center text-sm text-danger ring-2 ring-danger">
                       You must pick the same number of tents as tickets
                     </p>
                   )}
-                  Continue
-                </button>
+                  <BookingButton
+                    onClick={() => {
+                      if (totalValue === totalTentValue) {
+                        setShowAttendeeInput(true);
+                        setShowError(false);
+                      } else if (totalTentValue > totalValue) {
+                        setShowError(true);
+                      } else {
+                        setShowError(true);
+                      }
+                    }}
+                  >
+                    Continue
+                  </BookingButton>
+                </div>
               </FormGroup>
             )}
             {!tentSetup && (
@@ -373,45 +378,50 @@ function Booking() {
           </FormGroup>
         )}
         {showAttendeeInput && (
-          <FormGroup headline="Attendee information">
+          <FormGroup
+            headline="Attendee information"
+            classStyle="flex flex-wrap gap-10"
+          >
             <AttendeeInput tickets={tickets} />
           </FormGroup>
         )}
         {showAttendeeInput && (
-          <FormGroup headline="Credit card holder information">
-            <InputField
-              placeholder="First name"
-              type="text"
-              id="payer-firstname"
-              name="first-name"
-              labelText="First name"
-              required
-            />
-            <InputField
-              placeholder="Last name"
-              type="text"
-              id="payer-surname"
-              name="last-name"
-              labelText="Last name"
-              required
-            />
-            <InputField
-              placeholder="Email"
-              type="email"
-              id="payer-email"
-              name="email"
-              labelText="Email"
-              required
-            />
-            <InputField
-              placeholder="Phone"
-              type="phone"
-              inputMode="numeric"
-              id="payer-phone"
-              name="phone"
-              labelText="Phone"
-              required
-            />
+          <>
+            <FormGroup headline="Credit card holder information">
+              <InputField
+                placeholder="First name"
+                type="text"
+                id="payer-firstname"
+                name="first-name"
+                labelText="First name"
+                required
+              />
+              <InputField
+                placeholder="Last name"
+                type="text"
+                id="payer-surname"
+                name="last-name"
+                labelText="Last name"
+                required
+              />
+              <InputField
+                placeholder="Email"
+                type="email"
+                id="payer-email"
+                name="email"
+                labelText="Email"
+                required
+              />
+              <InputField
+                placeholder="Phone"
+                type="phone"
+                inputMode="numeric"
+                id="payer-phone"
+                name="phone"
+                labelText="Phone"
+                required
+              />
+            </FormGroup>
             <FormGroup headline="Payment information">
               <InputField
                 placeholder="Credit / Debit card number"
@@ -444,44 +454,62 @@ function Booking() {
                 labelText="CVC number"
               />
             </FormGroup>
-            <button>SUBMIT FORM</button>
-          </FormGroup>
+            <BookingButton>Place order</BookingButton>
+          </>
         )}
       </SubmitForm>
       <button
         onClick={toggleBasket}
         aria-expanded={basketStatus}
-        className="fixed inset-x-8 bottom-8 z-[2] mx-auto rounded-full border-2 border-accent bg-background-light bg-opacity-50 px-4 py-4 backdrop-blur-sm lg:hidden"
+        className="fixed inset-x-8 bottom-8 z-[2] mx-auto grid grid-cols-3 h-20 place-items-center items-center rounded-full border-2 border-accent bg-background-light bg-opacity-50 px-4 py-4 backdrop-blur-sm lg:hidden"
       >
         {basketStatus ? (
           tickets.length > 0 ? (
             <>
-              Close Basket{" "}
-              <span className="ml-4 rounded-full p-2 ring-2 ring-accent">
-                {tickets.length}
-              </span>
-              {timeLeft > 0 && <p>{formattedTimeLeft}</p>}
+              {timeLeft > 0 && (
+                <p className="col-start-1" role="timer">
+                  {formattedTimeLeft}
+                </p>
+              )}
+              <span className="col-start-2">Close Basket </span>
+              {showTotalAmount && (
+                <span className="col-start-3 w-10 rounded-full p-2 ring-2 ring-accent">
+                  {tickets.length}
+                </span>
+              )}
             </>
           ) : (
-            "Close Basket"
+            <>
+              <span className="col-start-1"></span>
+              <span className="col-start-2">Close Basket </span>
+              <span className="col-start-3 w-10"></span>
+            </>
           )
         ) : tickets.length > 0 ? (
           <>
-            View Basket{" "}
-            <span className="absolute top-2 ml-4 rounded-full p-2 px-4 ring-2 ring-accent">
-              {tickets.length}
-            </span>
-            <span className="absolute ml-4">
-              {timeLeft > 0 && <p>{formattedTimeLeft}</p>}
-            </span>
+            {timeLeft > 0 && (
+              <p className="col-start-1" role="timer">
+                {formattedTimeLeft}
+              </p>
+            )}
+            <span className="col-start-2">View Basket </span>
+            {showTotalAmount && (
+              <span className="col-start-3 w-10 rounded-full p-2 ring-2 ring-accent">
+                {tickets.length}
+              </span>
+            )}
           </>
         ) : (
-          "View Basket"
+          <>
+            <span className="col-start-1"></span>
+            <span className="col-start-2">View Basket </span>
+            <span className="col-start-3 w-10"></span>
+          </>
         )}
       </button>
-      <TicketBasket basketStatus={basketStatus} showTickets={showTickets}>
-        {timeLeft > 0 && <p>{formattedTimeLeft}</p>}
 
+      <TicketBasket basketStatus={basketStatus} showTickets={showTickets}>
+        {timeLeft > 0 && <p className="text-xl">{formattedTimeLeft}</p>}
         {tickets.map((ticket) => (
           <BasketItem
             showTickets={showTickets}
