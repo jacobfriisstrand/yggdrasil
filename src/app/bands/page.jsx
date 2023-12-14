@@ -2,8 +2,6 @@ import MidBands from "@/components/MidBands";
 import SmallBands from "@/components/SmallBands";
 import TopBands from "@/components/TopBands";
 
-import styles from ".//Bands.module.css";
-
 async function page() {
   const bands = await fetch("http://localhost:8080/bands/").then((res) =>
     res.json(),
@@ -11,8 +9,7 @@ async function page() {
 
   return (
     <>
-      <h1>This is the bands page</h1>
-      <div className={styles.bandFlex}>
+      <div className="mx-auto my-8 flex flex-col items-center [max-width:1000px]">
         <TopBands bands={bands} />
         <MidBands bands={bands} />
         <SmallBands bands={bands} />
