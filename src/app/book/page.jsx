@@ -5,7 +5,7 @@ import InputField from "@/components/InputField";
 import AttendeeInput from "@/components/AttendeeInput";
 import InputRadio from "@/components/InputRadio";
 import InputCounter from "@/components/InputCounter";
-import { useState, useEffect, use } from "react";
+import { useState, useEffect } from "react";
 import TicketCard from "@/components/TicketCard";
 import TicketBasket from "@/components/TicketBasket";
 import BasketItem from "@/components/BasketItem";
@@ -14,12 +14,7 @@ import TotalAmount from "@/components/TotalAmount";
 import BookingButton from "@/components/BookingButton";
 import { intervalToDuration } from "date-fns";
 import TentCard from "@/components/TentCard";
-
-//TODO Cant use when "use client" is active. Fix
-// export const metadata = {
-//   title: "Yggdrasil | Booking",
-//   description: "Dive into a dynamic celebration blending music, arts, and culture inspired by the legendary World Tree.",
-// };
+import Spinner from "@/components/Spinner";
 
 function Booking() {
   const [campingAreas, setCampingAreas] = useState([]);
@@ -79,8 +74,18 @@ function Booking() {
 
   const [basketStatus, setBasketStatus] = useState(false);
 
+  const [isLoading, setIsLoading] = useState(false);
+
+  const loadingFunction = () => {
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+      window.location.replace("/order-placed");
+    }, 2000);
+  };
+
   function toggleBasket() {
-    setBasketStatus(!basketStatus); // Toggle the state
+    setBasketStatus(!basketStatus);
   }
 
   function count() {
@@ -90,7 +95,6 @@ function Booking() {
       setTimeLeft(count);
       if (count === 0) {
         clearInterval(timer);
-        // Show the time-up modal
         setShowTimeUpModal(true);
       }
     }, 1000);
@@ -164,10 +168,6 @@ function Booking() {
       },
     );
 
-    // let orderID = await response.json();
-
-    console.log(formData.get("first-name"));
-
     let supabaseData = await responseSupabase.json();
     let reserveData = await responseReserve.json();
   }
@@ -185,8 +185,6 @@ function Booking() {
   )}`;
 
   return (
-    // lav den her modal i stedet
-    // https://www.youtube.com/watch?v=YwHJMlvZRCc&ab_channel=CodinginPublic
     <div className="min-h-full divide-x divide-accent lg:grid lg:grid-cols-[1fr_0.4fr]">
       {showTimeUpModal && (
         <div className="fixed inset-0 flex items-center justify-center">
@@ -199,7 +197,7 @@ function Booking() {
             <button
               onClick={() => {
                 setShowTimeUpModal(false);
-                window.location.reload(); // Refresh the page
+                window.location.reload();
               }}
               className="mt-4 rounded-sm bg-accent px-4 py-2 text-text-dark hover:bg-opacity-80"
             >
@@ -454,14 +452,16 @@ function Booking() {
                 labelText="CVC number"
               />
             </FormGroup>
-            <BookingButton>Place order</BookingButton>
+            <BookingButton disabled={isLoading} onClick={loadingFunction}>
+              Place Order {isLoading ? <Spinner /> : ""}
+            </BookingButton>
           </>
         )}
       </SubmitForm>
       <button
         onClick={toggleBasket}
         aria-expanded={basketStatus}
-        className="fixed inset-x-8 bottom-8 z-[2] mx-auto grid grid-cols-3 h-20 place-items-center items-center rounded-full border-2 border-accent bg-background-light bg-opacity-50 px-4 py-4 backdrop-blur-sm lg:hidden"
+        className="fixed inset-x-8 bottom-8 z-[2] mx-auto grid h-20 grid-cols-3 place-items-center items-center rounded-full border-2 border-accent bg-background-light bg-opacity-50 px-4 py-4 backdrop-blur-sm lg:hidden"
       >
         {basketStatus ? (
           tickets.length > 0 ? (

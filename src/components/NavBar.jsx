@@ -31,14 +31,14 @@ function NavBar() {
   });
 
   return (
-    <nav className="sticky top-0 flex place-items-center justify-between z-10">
+    <nav className="sticky top-0 z-10 flex place-items-center justify-between py-4">
       <Link
         onClick={() => setMenuStatus(false)}
         className="z-20"
         href="/"
         aria-label="Home"
       >
-        <Image src={logo} width={75} height={75} alt="Yggdrasil logo"></Image>
+        <Image src={logo} width={75} height={75} style={"width: auto"} alt="Yggdrasil logo"></Image>
       </Link>
       <MobileMenuButton toggleMenu={toggleMenu} menuStatus={menuStatus} />
       <div className="contents md:block">
@@ -48,24 +48,35 @@ function NavBar() {
             menuStatus ? "z-[10]" : "hidden"
           }`}
         ></animated.div>
-
         <animated.ul
           style={slide}
           className="fixed bottom-0 right-0 z-20 space-y-10 p-8 text-end text-4xl md:contents md:text-xl"
         >
           <div className="flex flex-col gap-10 md:flex-row">
             <li>
-              <Link onClick={() => setMenuStatus(false)} href="/bands">
+              <Link
+                className="font-heading transition-colors duration-100 hover:text-accent"
+                onClick={() => setMenuStatus(false)}
+                href="/bands"
+              >
                 Acts
               </Link>
             </li>
             <li>
-              <Link onClick={() => setMenuStatus(false)} href="/schedule">
+              <Link
+                className="font-heading transition-colors duration-100 hover:text-accent"
+                onClick={() => setMenuStatus(false)}
+                href="/schedule"
+              >
                 Schedule
               </Link>
             </li>
             <li>
-              <Link onClick={() => setMenuStatus(false)} href="/book">
+              <Link
+                className="font-heading transition-colors duration-100 hover:text-accent"
+                onClick={() => setMenuStatus(false)}
+                href="/book"
+              >
                 Tickets
               </Link>
             </li>

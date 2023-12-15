@@ -18,12 +18,12 @@ function TicketBasket({ children, basketStatus }) {
   });
 
   return (
-    <div className="p-4 md:sticky md:top-20">
+    <div className="p-4  lg:sticky lg:top-20">
       <animated.aside
         style={slide}
         className="absolute top-20 z-[1] flex w-screen flex-col justify-between overflow-y-scroll lg:static lg:contents lg:translate-x-0"
       >
-        <div className="sticky top-4 overflow-x-scroll">
+        <div className="sticky h-fit top-4 overflow-y-scroll w-fit">
           <h4 className="font-heading text-3xl">Basket</h4>
           {children}
         </div>
