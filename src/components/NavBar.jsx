@@ -11,13 +11,11 @@ function NavBar() {
   const [menuStatus, setMenuStatus] = useState(false);
 
   function toggleMenu() {
-    setMenuStatus(!menuStatus); // Toggle the state
+    setMenuStatus(!menuStatus);
   }
 
-  // Få animation kun til at køre på små skærme
   const slide = useSpring({
     transform: `translateX(${menuStatus ? 0 : 100}%)`,
-    // display: menuStatus ? "block" : "none",
     config: {
       easing: easings.easeInElastic,
     },
