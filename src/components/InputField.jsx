@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function InputField({ type, name, id, labelText, required }) {
+function InputField({ type, name, id, labelText }) {
   const [isFocused, setFocused] = useState(false);
 
   return (
@@ -14,7 +14,7 @@ function InputField({ type, name, id, labelText, required }) {
           type={type}
           name={name}
           id={id}
-          required={required}
+          required
         />
         <div
           className={

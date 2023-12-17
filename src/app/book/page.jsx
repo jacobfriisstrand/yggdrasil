@@ -187,9 +187,9 @@ function Booking() {
   return (
     <div className="min-h-full divide-x divide-accent lg:grid lg:grid-cols-[1fr_0.4fr]">
       {showTimeUpModal && (
-        <div className="fixed inset-0 flex items-center justify-center">
+        <div className="fixed inset-0 z-[999] flex items-center justify-center">
           <div className="rounded bg-foreground-light p-8 shadow-lg">
-            <h2 className="mb-4 text-2xl font-bold">Time is up!</h2>
+            <h2 className="mb-4 text-2xl">Time is up!</h2>
             <p>
               Unfortunately, your tickets are no longer on hold. Please refresh
               the page and try again.
@@ -430,6 +430,7 @@ function Booking() {
                 autoComplete="cc-number"
                 maxLength="19"
                 labelText="Credit/Debit card number"
+                required
               />
               <InputField
                 placeholder="MM/YYYY"
@@ -440,6 +441,7 @@ function Booking() {
                 autoComplete="cc-exp"
                 maxLength="7"
                 labelText="Expiration Date"
+                required
               />
               <InputField
                 placeholder="123"
@@ -450,6 +452,7 @@ function Booking() {
                 autoComplete="cc-csc"
                 maxLength="3"
                 labelText="CVC number"
+                required
               />
             </FormGroup>
             <BookingButton disabled={isLoading} onClick={loadingFunction}>

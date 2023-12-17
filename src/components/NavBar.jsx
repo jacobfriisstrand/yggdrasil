@@ -31,7 +31,7 @@ function NavBar() {
   });
 
   return (
-    <nav className="sticky top-0 z-10 flex place-items-center justify-between py-4">
+    <nav className="sticky top-0 z-[999] flex place-items-center justify-between py-4">
       <Link
         onClick={() => setMenuStatus(false)}
         className="z-20"
@@ -55,7 +55,7 @@ function NavBar() {
           <div className="flex flex-col gap-10 md:flex-row">
             <li>
               <Link
-                className="font-heading transition-colors duration-100 hover:text-accent"
+                className="font-heading transition-colors duration-200 hover:text-accent"
                 onClick={() => setMenuStatus(false)}
                 href="/bands"
               >
@@ -64,7 +64,7 @@ function NavBar() {
             </li>
             <li>
               <Link
-                className="font-heading transition-colors duration-100 hover:text-accent"
+                className="font-heading transition-colors duration-200 hover:text-accent"
                 onClick={() => setMenuStatus(false)}
                 href="/schedule"
               >
@@ -73,7 +73,7 @@ function NavBar() {
             </li>
             <li>
               <Link
-                className="font-heading transition-colors duration-100 hover:text-accent"
+                className="font-heading transition-colors duration-200 hover:text-accent"
                 onClick={() => setMenuStatus(false)}
                 href="/book"
               >

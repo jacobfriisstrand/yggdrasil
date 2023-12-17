@@ -11,7 +11,6 @@ function TicketBasket({ children, basketStatus }) {
   });
   const slide = useSpring({
     transform: `translateX(${basketStatus ? 0 : 100}%)`,
-
     config: {
       easing: easings.easeInElastic,
     },
@@ -23,7 +22,7 @@ function TicketBasket({ children, basketStatus }) {
         style={slide}
         className="absolute top-20 z-[1] flex w-screen flex-col justify-between overflow-y-scroll lg:static lg:contents lg:translate-x-0"
       >
-        <div className="sticky h-fit top-4 overflow-y-scroll w-fit">
+        <div className="sticky top-4 h-fit w-fit overflow-y-scroll">
           <h4 className="font-heading text-3xl">Basket</h4>
           {children}
         </div>

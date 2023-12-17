@@ -4,8 +4,9 @@ import Image from "next/image";
 export default function Home() {
   return (
     <>
-      <section>
+      <section className="mx-[-12rem] grid items-center text-center text-text-dark">
         <Image
+          className="[grid-area:1/1] blur"
           priority
           quality={30}
           alt="people gathering on concert field"
@@ -19,23 +20,25 @@ export default function Home() {
             objectFit: "cover",
           }}
         ></Image>
-        <h1 className="font-heading text-4xl">Yggdrasil Music Festival 2024</h1>
-        <p>Immerse Yourself in the Mystic Melodies</p>
-        <Link href="/bands">LINEUP</Link>
-        <Link href="/book">TICKETS</Link>
-        <Link href="/schedule">SCHEDULE</Link>
-      </section>
-      <section>
-        <h2>A Never-Ending Symphony</h2>
-        <p>
-          Immerse yourself in the perpetual celebration of sound. Yggdrasil
-          transcends time, offering a continuous 24/7, 365-day musical journey.
-        </p>
-        <p>
-          Whether it&apos;s dawn or dusk, weekday or weekend, the festival
-          grounds pulsate with an unceasing rhythm, ensuring there&apos;s always
-          a place for you in the eternal dance beneath the branches.
-        </p>
+        <div className="z-10 space-y-10 [grid-area:1/1]">
+          <div>
+            <h1 className="font-heading text-4xl lg:text-7xl">
+              Yggdrasil Music Festival 2024
+            </h1>
+            <p>Immerse yourself in the Mystic Melodies</p>
+          </div>
+          <div className="space-x-4">
+            <Link className="ring-1 text-xl ring-accent px-4 py-2 rounded hover:bg-accent duration-300" href="/bands">
+              LINEUP
+            </Link>
+            <Link className="ring-1 text-xl ring-accent px-4 py-2 rounded hover:bg-accent duration-300" href="/book">
+              TICKETS
+            </Link>
+            <Link className="ring-1 text-xl ring-accent px-4 py-2 rounded hover:bg-accent duration-300" href="/schedule">
+              SCHEDULE
+            </Link>
+          </div>
+        </div>
       </section>
     </>
   );
