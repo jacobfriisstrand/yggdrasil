@@ -2,7 +2,7 @@ import Link from "next/link";
 
 function Footer() {
   return (
-    <div className="relative justify-self-auto border-t-2 border-accent">
+    <div className="relative justify-self-auto">
       <div className="  my-10 flex justify-between ">
         <div className="w-80">
           <h2 className="font-subheading">A Never-Ending Symphony</h2>
