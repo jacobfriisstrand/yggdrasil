@@ -28,7 +28,7 @@ async function BandPage({ params }) {
   // Hvis ikke, tilføj "localhost:8080/" før billedestien
   const imagePath = checkLogoPath
     ? band.logo
-    : `https://funky-melodious-jingle.glitch.me/${band.logo}`;
+    : `https://funky-melodious-jingle.glitch.me/logos/${band.logo}`;
 
   console.log(band);
   return (
