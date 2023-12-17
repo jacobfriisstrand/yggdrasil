@@ -12,7 +12,7 @@ function ScheduleAct(props) {
           {props.start} - {props.end}
         </p>
         <p className="text-base sm:text-xs">{props.genre}</p>
-        <span className="absolute bottom-1.5 right-1.5 hidden text-2xl text-accent group-hover:block">
+        <span className="absolute bottom-1.5 right-2.5 text-2xl text-accent opacity-0 duration-300 group-hover:right-1.5 group-hover:block group-hover:opacity-100">
           &#8594;
         </span>
       </div>

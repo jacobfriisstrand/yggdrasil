@@ -62,7 +62,6 @@ async function BandPage({ params }) {
             <p className="font-body text-xs">Picture credits</p>
             <p className="font-body text-base">{band.logoCredits}</p>
           </div>
-          
         </aside>
         <div className="col-span-2">
           <p>{band.bio}</p>
