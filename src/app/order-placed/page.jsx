@@ -1,6 +1,6 @@
 function ThankYou() {
   return (
-    <div className="flex flex-col text-center space-y-20">
+    <div className="flex h-full flex-col place-items-center items-center justify-center space-y-20 text-center">
       <h1 className="font-heading text-4xl">Thank you for your purchase</h1>
       <p>
         We are thrilled to have you join us at
