@@ -14,7 +14,7 @@ function TicketCard({
       <h4 className="font-subheading text-2xl ">{ticketName}</h4>
       <p>{ticketType}</p>
       <Image
-        className="max-h-72 aspect-square object-cover"
+        className="max-h-72 aspect-square object-cover rounded"
         src={imageUrl}
         alt="ticket image"
         width={1000}

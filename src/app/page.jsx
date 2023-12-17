@@ -6,7 +6,7 @@ export default function Home() {
     <>
       <section className="mx-[-12rem] grid items-center text-center text-text-dark">
         <Image
-          className="[grid-area:1/1] blur"
+          className="blur [grid-area:1/1]"
           priority
           quality={30}
           alt="people gathering on concert field"
@@ -28,13 +28,22 @@ export default function Home() {
             <p>Immerse yourself in the Mystic Melodies</p>
           </div>
           <div className="space-x-4">
-            <Link className="ring-1 text-xl ring-accent px-4 py-2 rounded hover:bg-accent duration-300" href="/bands">
-              LINEUP
+            <Link
+              className="rounded px-4 py-2 text-xl text-text-dark ring-1 ring-accent duration-300 hover:bg-accent"
+              href="/bands"
+            >
+              LINE-UP
             </Link>
-            <Link className="ring-1 text-xl ring-accent px-4 py-2 rounded hover:bg-accent duration-300" href="/book">
+            <Link
+              className="rounded px-4 py-2 text-xl text-text-dark ring-1 ring-accent duration-300 hover:bg-accent"
+              href="/book"
+            >
               TICKETS
             </Link>
-            <Link className="ring-1 text-xl ring-accent px-4 py-2 rounded hover:bg-accent duration-300" href="/schedule">
+            <Link
+              className="rounded px-4 py-2 text-xl text-text-dark ring-1 ring-accent duration-300 hover:bg-accent"
+              href="/schedule"
+            >
               SCHEDULE
             </Link>
           </div>

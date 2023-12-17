@@ -36,7 +36,13 @@ function NavBar() {
         href="/"
         aria-label="Home"
       >
-        <Image src={logo} width={75} height={75} style={"width: auto"} alt="Yggdrasil logo"></Image>
+        <Image
+          src={logo}
+          width={75}
+          height={75}
+          style={"width: auto"}
+          alt="Yggdrasil logo"
+        ></Image>
       </Link>
       <MobileMenuButton toggleMenu={toggleMenu} menuStatus={menuStatus} />
       <div className="contents md:block">
@@ -53,16 +59,16 @@ function NavBar() {
           <div className="flex flex-col gap-10 md:flex-row">
             <li>
               <Link
-                className="font-heading transition-colors duration-200 hover:text-accent"
+                className="font-heading text-text-light transition-colors duration-200 hover:text-accent"
                 onClick={() => setMenuStatus(false)}
                 href="/bands"
               >
-                Acts
+                Line-up
               </Link>
             </li>
             <li>
               <Link
-                className="font-heading transition-colors duration-200 hover:text-accent"
+                className="font-heading text-text-light transition-colors duration-200 hover:text-accent"
                 onClick={() => setMenuStatus(false)}
                 href="/schedule"
               >
@@ -71,7 +77,7 @@ function NavBar() {
             </li>
             <li>
               <Link
-                className="font-heading transition-colors duration-200 hover:text-accent"
+                className="font-heading text-text-light transition-colors duration-200 hover:text-accent"
                 onClick={() => setMenuStatus(false)}
                 href="/book"
               >
