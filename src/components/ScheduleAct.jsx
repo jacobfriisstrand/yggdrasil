@@ -4,7 +4,7 @@ import React from "react";
 function ScheduleAct(props) {
   return (
     <Link bands={props.bands} href={`/bands/${props.slug}`}>
-      <div className="group relative rounded-sm border-2 border-accent bg-foreground-light p-2 ">
+      <div className="group relative rounded-sm border border-accent bg-foreground-light p-2 ">
         <p className="font-subheading text-xl [margin-bottom:1rem;] sm:text-base">
           {props.name}
         </p>
