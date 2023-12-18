@@ -3,14 +3,14 @@ import { useSpring, animated } from "react-spring";
 function MobileMenuButton(props) {
   const menuAnimation1 = useSpring({
     transform: props.menuStatus
-      ? "rotate(45deg) translate(10px, 10px)" // Add translation values as needed
-      : "rotate(0deg) translate(0px, 0px)", // Provide default translation values
+      ? "rotate(45deg) translate(10px, 10px)"
+      : "rotate(0deg) translate(0px, 0px)", 
   });
 
   const menuAnimation2 = useSpring({
     transform: props.menuStatus
-      ? "rotate(-45deg) translate(-3px, 3px)" // Add translation values as needed
-      : "rotate(0deg) translate(0px, 0px)", // Provide default translation values
+      ? "rotate(-45deg) translate(-3px, 3px)"
+      : "rotate(0deg) translate(0px, 0px)", 
   });
 
   return (

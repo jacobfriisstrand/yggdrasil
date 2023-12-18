@@ -22,15 +22,14 @@ async function BandPage({ params }) {
   // Hvis billedstien ikke findes, returner 404
   if (res.status != 200) return notFound();
 
-  // Tjek om billedstiens kilde starter med "https"
+  // Tjek om billedstiens url starter med "https"
   const checkLogoPath = band.logo.startsWith("http");
 
-  // Hvis ikke, tilføj "localhost:8080/" før billedestien
+  // Hvis ikke, tilføj "https://funky-melodious-jingle.glitch.me/logos/" før billedestien
   const imagePath = checkLogoPath
     ? band.logo
     : `https://funky-melodious-jingle.glitch.me/logos/${band.logo}`;
-
-  console.log(band);
+    
   return (
     <div className="">
       <div className="relative mx-[-6rem]">

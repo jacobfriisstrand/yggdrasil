@@ -1,4 +1,4 @@
-function AreaCard({ children, areaName, imageCategory }) {
+function AreaCard({ children, areaName}) {
   return (
     <div>
       <h3>{areaName}</h3>

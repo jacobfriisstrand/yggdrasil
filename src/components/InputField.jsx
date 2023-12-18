@@ -19,10 +19,10 @@ function InputField({ type, name, id, labelText }) {
         <div
           className={
             isFocused
-              ? `translate-x-[-32px] translate-y-[-8px] scale-75 transition-all duration-[100]` + // Adjust the duration and ease-out as needed
+              ? `translate-x-[-32px] translate-y-[-8px] scale-75 transition-all duration-[100]` +
                 " " +
                 `[grid-area:1/1]`
-              : `p-4 transition-all duration-100 [grid-area:1/1]` // Adjust the duration and ease-out as needed
+              : `p-4 transition-all duration-100 [grid-area:1/1]`
           }
         >
           {labelText}

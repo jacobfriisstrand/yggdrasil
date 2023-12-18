@@ -22,7 +22,6 @@ function WrapperSchedule({ ...props }) {
         bands.push(slot);
       });
     }
-    // console.log(bands);
   }
 
   return (

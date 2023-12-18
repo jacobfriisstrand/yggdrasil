@@ -2,8 +2,6 @@ function BasketItem({
   ticketName,
   price,
   showTickets,
-  selectedArea,
-  ticketType,
 }) {
   return (
     <div className={!showTickets ? `hidden` : "mt-4"}>
