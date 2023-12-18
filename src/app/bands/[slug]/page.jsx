@@ -29,7 +29,7 @@ async function BandPage({ params }) {
   const imagePath = checkLogoPath
     ? band.logo
     : `https://funky-melodious-jingle.glitch.me/logos/${band.logo}`;
-    
+
   return (
     <div className="">
       <div className="relative mx-[-6rem]">
@@ -59,7 +59,9 @@ async function BandPage({ params }) {
           </div>
           <div>
             <p className="font-body text-xs">Picture credits</p>
-            <p className="font-body text-base">{band.logoCredits}</p>
+            <p className="font-body text-base">
+              {band.logoCredits ? band.logoCredits : "No credits available"}
+            </p>
           </div>
         </aside>
         <div className="col-span-2">
